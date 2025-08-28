@@ -1,11 +1,15 @@
 import "./App.css";
-import Navbar from "./Navbar";
+import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+import QuickLinks from "./components/QuickLinks";
 
 function App() {
 
   return (
     <>
       <Navbar />
+      <QuickLinks />
+      <Hero />
     </>
   );
 }
