@@ -3,13 +3,13 @@
   border: 1px solid green;
 }
 
-.nav-container {
-  border-bottom: 1px solid gray;
-}
-
 .responsive-container {
   max-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid red;
 }
 
 @keyframes logo-spin {
