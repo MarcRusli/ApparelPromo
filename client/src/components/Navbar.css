@@ -1,5 +1,5 @@
 .nav-container {
-    background-color: #003e7e;
+    background-color: var(--ap-blue);
 }
 
 .asdf {

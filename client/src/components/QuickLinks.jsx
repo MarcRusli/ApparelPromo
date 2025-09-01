@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function QuickLinks() {
   return (
-    <div className="responsive-container">
-      <nav className="subnav">
+    <div className="nav-container bottom">
+      <nav className="responsive-container subnav">
         <ul className="quicklinks">
           <li>
             <a href="_">Custom T-shirts</a>
