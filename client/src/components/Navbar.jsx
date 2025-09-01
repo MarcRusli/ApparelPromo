@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import reactLogo from "../assets/react.svg";
+import apLogo from "../assets/apparelpromo-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
@@ -14,9 +14,7 @@ export default function Navbar() {
   return (
     <div className="nav-container">
       <nav className="topnav responsive-container">
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo-topnav" alt="React logo" />
-        </a>
+        <img src={apLogo} className="logo-topnav" alt="Apparel Promo logo" />
         <ul className="nav-items">
           <li>asdf1</li>
           <li>asdf2</li>

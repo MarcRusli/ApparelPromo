@@ -2,16 +2,22 @@
     background-color: #003e7e;
 }
 
+.asdf {
+    background-color: black;
+    height: 100px;
+    width: 100px;
+}
+
 .topnav {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-md);
+    padding: 0 var(--space-md);
 }
 
 .logo-topnav {
-    height: 2em;
+    height: 4em;
     border: 1px solid purple;
 }
 
