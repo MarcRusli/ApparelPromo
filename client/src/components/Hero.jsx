@@ -6,7 +6,8 @@ export default function Hero() {
   return (
     <section id="hero">
       <div className="text-container">
-        <h1>Custom Embroidery & Screen Printing Excellence</h1>
+		<span class="hero-badge">Bay Area's Premier Custom Apparel</span>
+        <h1 class="hero-title">Custom Embroidery & Screen Printing Excellence</h1>
         <p className="subheading diminished">
           Professional custom apparel solutions for businesses, teams, and
           events. From design to delivery, we make your brand stand out.
