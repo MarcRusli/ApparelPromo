@@ -10,6 +10,7 @@
 
 .topnav {
     width: 100%;
+    height: 6em;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,11 +18,14 @@
 }
 
 .logo-topnav {
-    height: 4em;
-    border: 1px solid purple;
+    height: 100%;
 }
 
-.nav-items {
-    border: 1px solid red;
-    display: flex;
+address {
+    padding: var(--space-sm)
+}
+
+address a {
+    color: white;
+    font-style: normal;
 }
