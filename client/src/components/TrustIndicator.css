@@ -1,0 +1,5 @@
+.trust-indicator {
+    list-style-type: none;
+    padding: var(--space-sm);
+    border: 1px solid blue;
+}

@@ -12,6 +12,10 @@
   border: 1px solid red;
 }
 
+.diminished {
+  color: #444444;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

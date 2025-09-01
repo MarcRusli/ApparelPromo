@@ -1,3 +1,7 @@
+.nav-container {
+    background-color: #003e7e;
+}
+
 .topnav {
     width: 100%;
     display: flex;

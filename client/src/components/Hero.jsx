@@ -1,4 +1,5 @@
 import "./Hero.css";
+import TrustIndicator from "./TrustIndicator";
 import heroImage from "../assets/apparelpromo-hero.png";
 
 export default function Hero() {
@@ -6,22 +7,22 @@ export default function Hero() {
     <section id="hero">
       <div className="text-container">
         <h1>Custom Embroidery & Screen Printing Excellence</h1>
-        <p>
+        <p className="subheading diminished">
           Professional custom apparel solutions for businesses, teams, and
           events. From design to delivery, we make your brand stand out.
         </p>
 				<ul className="core-services">
 					<li><a href="_">Embroidery</a></li>
-					<li><a href="_"></a>Screen Printing</li>
+					<li><a href="_">Screen Printing</a></li>
 					<li><a href="_">Digital Transfer</a></li>
-					<li><a href="_">Other Promotional Products</a></li>
+					<li><a href="_">Promotional Products</a></li>
 				</ul>
 				<span>Get Free Quote</span>
 				<span>View Our Work</span>
 				<ul className="trust-indicators">
-					<li>Local Hayward Business</li>
-					<li>20+ Years Experience</li>
-					<li>Quality Guaranteed</li>
+					<TrustIndicator text={"Local Hayward Business"} />
+					<TrustIndicator text={"20+ Years Experience"} />
+					<TrustIndicator text={"Quality Guaranteed"} />
 				</ul>
       </div>
       <img className="hero-image" src={heroImage}></img>
