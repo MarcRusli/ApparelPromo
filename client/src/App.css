@@ -11,7 +11,7 @@
 }
 
 .diminished {
-  color: #444444;
+  color: var(--diminished-grey);
 }
 
 @keyframes logo-spin {
