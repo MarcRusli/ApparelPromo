@@ -2,17 +2,22 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: var(--space-lg) auto;
+  margin: var(--space-lg);
   gap: var(--space-lg);
   max-width: 1600px;
 }
 
 .hero-badge {
-  border-radius: 8px;
-  padding: var(--space-xs);
+  padding: var(--space-xs) 0;
   color: var(--ap-blue);
   font-weight: bold;
   font-size: x-large;
+}
+
+.hero-badge-sub {
+  margin-top: -0.5em;
+  color: var(--ap-blue);
+  font-weight: bold;
 }
 
 .hero-title {

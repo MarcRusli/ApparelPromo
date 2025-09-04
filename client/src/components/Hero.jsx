@@ -6,11 +6,10 @@ export default function Hero() {
   return (
     <section id="hero">
       <div className="text-container">
-        <span className="hero-badge">Bay Area's Premier Custom Apparel</span>
-        <br />
-        <span className="hero-badge">
+        <p className="hero-badge">Bay Area's Premier Custom Apparel</p>
+        <p className="hero-badge-sub">
           Family Owned and Operated Business Since 1993
-        </span>
+        </p>
         <h1 className="hero-title">
           Custom Embroidery & Screen Printing Excellence
         </h1>
