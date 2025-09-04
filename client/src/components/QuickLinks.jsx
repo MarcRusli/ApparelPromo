@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function QuickLinks() {
   return (
-    <div className="nav-container bottom">
+    <div className="nav-container subnav-container">
       <nav className="responsive-container subnav">
         <ul className="quicklinks">
           <li>
@@ -13,7 +13,7 @@ export default function QuickLinks() {
             <a href="_">Create Your Shirt</a>
           </li>
         </ul>
-        <span style={{color: "white"}}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span>
+        <span><span style={{fontSize: "1.7em"}}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span> Cart</span>
       </nav>
     </div>
   );
