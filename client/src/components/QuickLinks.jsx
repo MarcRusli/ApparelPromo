@@ -13,13 +13,7 @@ export default function QuickLinks() {
             <a href="_">Create Your Shirt</a>
           </li>
         </ul>
-        <ul className="nav-items">
-          <li>asdf1</li>
-          <li>asdf2</li>
-          <li>
-            <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
-          </li>
-        </ul>
+        <span style={{color: "white"}}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span>
       </nav>
     </div>
   );
