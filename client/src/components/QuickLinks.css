@@ -11,10 +11,6 @@
     padding: var(--space-md);
 }
 
-.quicklinks li {
-    list-style-type: none;
-}
-
 .nav-items {
     display: flex;
     align-items: center;

@@ -2,9 +2,10 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: var(--space-lg);
+  margin: var(--space-lg) auto;
   gap: var(--space-lg);
   max-width: 1600px;
+  padding: 0 var(--space-lg);
 }
 
 .hero-badge {
@@ -40,7 +41,6 @@
   display: inline-block;
   width: 14em;
   border-radius: 8px;
-  list-style-type: none;
   text-align: center;
   padding: var(--space-sm);
   background-color: var(--ap-orange);

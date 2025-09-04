@@ -2,7 +2,7 @@ import "./TrustBar.css";
 export default function TrustBar() {
   return (
     <section id="trust-bar">
-      <h2 className="diminished">Trusted by Bay Area Businesses, Institutions, and Communities</h2>
+      <h2 className="trust-bar-title diminished">Trusted by Bay Area Businesses, Institutions, and Communities</h2>
       <ul className="trusted-groups-container">
         <li className="trusted-group">
           <img src="_" alt="" />
