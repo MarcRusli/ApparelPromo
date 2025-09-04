@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import QuickLinks from "./components/QuickLinks";
 import TrustBar from "./components/TrustBar";
 import Services from "./components/Services";
+import Advantages from "./components/Advantages";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 /* import all the icons in Free Solid, Free Regular, and Brands styles */
@@ -21,6 +22,7 @@ function App() {
       <Hero />
       <TrustBar />
       <Services />
+      <Advantages />
     </>
   );
 }

@@ -29,6 +29,8 @@
   --space-lg: calc(2 * var(--space-unit));
   --space-xl: calc(3.25 * var(--space-unit));
   --space-xxl: calc(5.25 * var(--space-unit));
+
+  --max-content-width: 1280px;
 }
 
 a {
@@ -48,6 +50,10 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+h2 {
+  text-align: center;
 }
 
 button {
