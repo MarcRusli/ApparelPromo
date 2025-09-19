@@ -1,0 +1,22 @@
+.designer-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background-color: gray;
+}
+
+.designer-toolbar-btn {
+  border-radius: 0;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.designer-toolbar-btn:hover {
+  cursor: pointer;
+}
+
+.delete-btn {
+  color: red;
+}

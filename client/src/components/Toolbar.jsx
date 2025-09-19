@@ -1,4 +1,4 @@
-import { FabricImage, Rect, Control, Circle } from "fabric";
+import { FabricImage, Rect, Circle } from "fabric";
 import "./toolbar.css";
 
 export default function Toolbar({ canvas }) {
@@ -74,7 +74,7 @@ export default function Toolbar({ canvas }) {
             originX: "center",
             originY: "center",
           });
-          
+
           canvas.add(img);
           canvas.centerObject(img);
           canvas.setActiveObject(img);
@@ -86,11 +86,52 @@ export default function Toolbar({ canvas }) {
     reader.readAsDataURL(file); // convert file to base64 URL for fromURL
   }
 
+  const deleteObject = () => {
+    if (!canvas) return;
+
+    const activeObjects = canvas.getActiveObjects();
+    activeObjects.forEach((obj) => canvas.remove(obj));
+    canvas.discardActiveObject();
+  };
+
+  const exportAsPNG = () => {
+    if (!canvas) return;
+
+    const dataURL = canvas.toDataURL({
+      format: "png",
+      quality: 1.0
+    });
+    const link = document.createElement("a");
+    link.href = dataURL;
+    link.download = `t-shirt-design.png`;
+    link.click();
+  }
+
   return (
-    <div className="toolbar">
-      <button onClick={addRectangle}>Add a rectangle lol</button>
-      <button onClick={addCircle}>Add a circle</button>
-      <input type="file" id="imageUpload" name="uploadedImage" onChange={addImage} />
+    <div className="designer-toolbar">
+      <button className="designer-toolbar-btn" onClick={addRectangle}>
+        Add a rectangle lol
+      </button>
+      <button className="designer-toolbar-btn" onClick={addCircle}>
+        Add a circle
+      </button>
+      <label htmlFor="image-upload" className="designer-toolbar-btn">
+        Upload Image
+      </label>
+      <input
+        className="designer-toolbar-btn"
+        type="file"
+        id="image-upload"
+        name="uploadedImage"
+        style={{ display: "none" }}
+        onChange={addImage}
+      />
+      <button className="designer-toolbar-btn delete-btn" onClick={deleteObject}>
+        Delete selected object(s)
+      </button>
+      <button className="designer-toolbar-btn export-btn" onClick={exportAsPNG}>
+        Export as PNG
+      </button>
     </div>
   );
 }
