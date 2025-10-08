@@ -1,10 +1,10 @@
 import "./App.css";
-import Hero from "./components/Hero";
+
 import Navbar from "./components/Navbar";
 import QuickLinks from "./components/QuickLinks";
-import TrustBar from "./components/TrustBar";
-import Services from "./components/Services";
-import Advantages from "./components/Advantages";
+import Home from "./pages/Home"
+
+import { Routes, Route } from "react-router";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 /* import all the icons in Free Solid, Free Regular, and Brands styles */
@@ -20,11 +20,10 @@ function App() {
     <>
       <Navbar />
       <QuickLinks />
-      <Hero />
-      <TrustBar />
-      <Services />
-      <Advantages />
-      <TShirtDesigner />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/designer" element={<TShirtDesigner />} />
+      </Routes>
     </>
   );
 }

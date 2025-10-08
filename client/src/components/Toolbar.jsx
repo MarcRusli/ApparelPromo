@@ -12,17 +12,6 @@ export default function Toolbar({ canvas }) {
         height: 60,
         fill: "#a371a8",
       });
-
-      /* rect.controls.deleteControl = new Control({
-        x: 0.5,
-        y: -0.5,
-        offsetY: 16,
-        cursorStyle: "pointer",
-        mouseUpHandler: deleteObject,
-        render: renderIcon,
-        cornerSize: 24,
-      }); */
-
       canvas.add(rect);
     }
   };
@@ -99,14 +88,14 @@ export default function Toolbar({ canvas }) {
 
     const dataURL = canvas.toDataURL({
       format: "png",
-      quality: 1.0
+      quality: 1.0,
     });
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = `t-shirt-design.png`;
     link.click();
-  }
-
+  };
+  
   return (
     <div className="designer-toolbar">
       <button className="designer-toolbar-btn" onClick={addRectangle}>
@@ -126,7 +115,10 @@ export default function Toolbar({ canvas }) {
         style={{ display: "none" }}
         onChange={addImage}
       />
-      <button className="designer-toolbar-btn delete-btn" onClick={deleteObject}>
+      <button
+        className="designer-toolbar-btn delete-btn"
+        onClick={deleteObject}
+      >
         Delete selected object(s)
       </button>
       <button className="designer-toolbar-btn export-btn" onClick={exportAsPNG}>

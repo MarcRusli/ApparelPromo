@@ -20,6 +20,58 @@ export default function TShirtDesigner() {
     setIsFrontSide(!isFrontSide);
   };
 
+  const handleSendEmail = async () => {
+    // Create FormData
+    const formData = new FormData();
+
+    console.log("asdf!");
+    console.log(fabricCanvasFront.current);
+
+    fabricCanvasFront.current.toBlob((blob) => {
+      console.log("blob:", blob);
+      formData.append("files", blob, "front-design.png");
+    });
+
+    formData.append("asdf", "affff");
+
+    console.log("made form data?", formData.has("files"));
+
+    // Convert canvases to blobs and append to FormData
+    await new Promise((resolve) => {
+      fabricCanvasFront.current.toBlob((blob) => {
+        formData.append("files", blob, "front-design.png");
+        resolve();
+      });
+    });
+
+    await new Promise((resolve) => {
+      fabricCanvasBack.current.toBlob((blob) => {
+        formData.append("files", blob, "back-design.png");
+        resolve();
+      });
+    });
+
+    console.log("after promises");
+
+    // Example: get recipient email from input (hardcoded here for demo)
+    formData.append("email", "apparelpromotest@gmail.com");
+
+    try {
+      console.log("trying!");
+      const res = await fetch("/api/send-both", {
+        method: "POST",
+        body: formData,
+      });
+      if (res.ok) {
+        alert("Email with both designs sent!");
+      } else {
+        alert("Failed to send email.");
+      }
+    } catch (err) {
+      console.error("Error sending email:", err);
+    }
+  };
+
   useEffect(() => {
     const setUpCanvas = (canvasRef, shirtURL) => {
       if (canvasRef.current) {
@@ -132,6 +184,9 @@ export default function TShirtDesigner() {
       </div>
       <button onClick={handleToggleSide}>
         Switch to {isFrontSide ? "Back" : "Front"}
+      </button>
+      <button onClick={handleSendEmail}>
+        Send Your Design to ApparelPromo
       </button>
     </div>
   );

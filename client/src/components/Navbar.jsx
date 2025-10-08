@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <div className="nav-container">
       <nav className="topnav responsive-container">
-        <img src={apLogo} className="logo-topnav" alt="Apparel Promo logo" />
+        <a className="logo-topnav" href="/" ><img src={apLogo} className="logo-topnav" alt="Apparel Promo logo" /></a>
         <address>
           <a href="mailto:sales.apparelpromo@gmail.com">
             sales.apparelpromo@gmail.com
