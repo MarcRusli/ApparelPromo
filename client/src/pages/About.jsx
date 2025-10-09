@@ -11,26 +11,25 @@ export default function About() {
           you need to market your company effectively without breaking the bank.
         </p>
         <p className="about-text">
-          At Apparel Promo, we provide custom apparel and promotional product
-          solutions designed to elevate your brand and strengthen your company
-          image. From classic polos and tees to high-performance gear and
-          premium corporate wear, we offer a wide selection of quality products
-          at competitive prices.
+          At Apparel Promo, we help bring your brand to life with custom apparel
+          and promotional products that make a lasting impression. Whether
+          you’re looking for everyday polos and tees or high-tech performance
+          gear and stylish corporate wear, we’ve got a wide range of quality
+          options at great prices.
         </p>
         <p className="about-text">
-          Our decorating and marketing experts do more than fulfill orders —
-          they partner with you to find the perfect products that align with
-          your goals, brand identity, and budget. Whether you need promotional
-          tools to grow your business, thoughtful gifts for employees or
-          clients, or merchandise for a special event, we’re here to support you
-          every step of the way.
+          Our team of decorating and marketing experts is here to do more than
+          just fill your order — we’re here to help you find the perfect
+          products that fit your goals, your brand, and your budget. From
+          company giveaways and client gifts to team uniforms and special
+          events, we’ll guide you through every step of the process.
         </p>
         <p className="about-text">
-          We take pride in delivering exceptional quality, unique designs, and
-          outstanding customer service. With our in-house embroidery
-          capabilities, we ensure fast, precise, and reliable results. We look
-          forward to collaborating with you and bringing your next project to
-          life.
+          We take pride in creating unique designs, delivering top-notch
+          craftsmanship, and providing friendly, reliable service. With our
+          in-house embroidery team, we can turn around your projects quickly and
+          with great attention to detail. We can’t wait to work with you and
+          help make your next project a success!
         </p>
       </div>
       <img src={apSign} />
