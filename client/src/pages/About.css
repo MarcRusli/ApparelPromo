@@ -1,0 +1,24 @@
+.about-container {
+  max-width: var(--max-content-width);
+  margin: var(--space-lg) auto;
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.about-header {
+  margin-bottom: var(--space-lg);
+}
+.about-text {
+  font-size: larger;
+  margin-bottom: var(--space-md);
+}
+
+.about-text:first-of-type:first-letter {
+  font-size: xx-large;
+  font-weight: bolder;
+  color: var(--ap-orange);
+}
+
+.about-br {
+  height: 2em;
+}

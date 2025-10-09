@@ -2,7 +2,8 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import QuickLinks from "./components/QuickLinks";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
+import About from "./pages/About";
 
 import { Routes, Route } from "react-router";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/designer" element={<TShirtDesigner />} />
+        <Route path="/about-us" element={<About />} />
       </Routes>
     </>
   );

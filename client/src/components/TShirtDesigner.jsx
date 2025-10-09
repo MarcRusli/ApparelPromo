@@ -27,31 +27,15 @@ export default function TShirtDesigner() {
     console.log("asdf!");
     console.log(fabricCanvasFront.current);
 
-    fabricCanvasFront.current.toBlob((blob) => {
-      console.log("blob:", blob);
-      formData.append("files", blob, "front-design.png");
-    });
-
-    formData.append("asdf", "affff");
-
-    console.log("made form data?", formData.has("files"));
-
-    // Convert canvases to blobs and append to FormData
-    await new Promise((resolve) => {
-      fabricCanvasFront.current.toBlob((blob) => {
+    await fabricCanvasFront.current
+      .toBlob({
+        format: "png",
+        quality: 1,
+      })
+      .then((blob) => {
         formData.append("files", blob, "front-design.png");
-        resolve();
-      });
-    });
-
-    await new Promise((resolve) => {
-      fabricCanvasBack.current.toBlob((blob) => {
-        formData.append("files", blob, "back-design.png");
-        resolve();
-      });
-    });
-
-    console.log("after promises");
+      })
+      .then(() => console.log("made form data?", formData.has("files")));
 
     // Example: get recipient email from input (hardcoded here for demo)
     formData.append("email", "apparelpromotest@gmail.com");
