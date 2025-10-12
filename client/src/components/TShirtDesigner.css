@@ -1,4 +1,6 @@
 .designer-container {
   display: flex;
   border: 3px solid red;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
 }

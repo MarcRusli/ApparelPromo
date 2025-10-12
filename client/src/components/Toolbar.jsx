@@ -1,5 +1,5 @@
 import { FabricImage, Rect, Circle } from "fabric";
-import "./toolbar.css";
+import "./Toolbar.css";
 
 export default function Toolbar({ canvas }) {
   const addRectangle = () => {

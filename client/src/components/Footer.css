@@ -1,0 +1,9 @@
+#footer {
+  background-color: var(--ap-black);
+  color: white;
+  padding-top: var(--space-xxl);
+  padding-bottom: var(--space-xxl);
+}
+
+.footer-container {
+}

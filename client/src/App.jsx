@@ -4,6 +4,10 @@ import Navbar from "./components/Navbar";
 import QuickLinks from "./components/QuickLinks";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Designer from "./pages/Designer";
+import ScreenPrint from "./pages/ScreenPrint";
+import Embroidery from "./pages/Embroidery";
+import Footer from "./components/Footer";
 
 import { Routes, Route } from "react-router";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -12,7 +16,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
-import TShirtDesigner from "./components/TShirtDesigner";
 
 library.add(fas, far, fab);
 
@@ -23,9 +26,12 @@ function App() {
       <QuickLinks />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/designer" element={<TShirtDesigner />} />
+        <Route path="/designer" element={<Designer />} />
+        <Route path="/screen-print" element={<ScreenPrint />} />
+        <Route path="/embroidery" element={<Embroidery />} />
         <Route path="/about-us" element={<About />} />
       </Routes>
+      <Footer />
     </>
   );
 }
