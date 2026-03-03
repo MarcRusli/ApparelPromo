@@ -21,3 +21,9 @@
 .quicklinks a {
     font-weight: bold;
 }
+
+@media (max-width: 900px) {
+    .subnav-container {
+        display: none;
+    }
+}
