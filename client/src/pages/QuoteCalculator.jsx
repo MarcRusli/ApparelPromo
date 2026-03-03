@@ -6,13 +6,13 @@ function roundToNearestFiveCents(amount) {
 }
 
 function getQuote(blankCost, quantity, frontColors, backColors) {
-  const A = 96.9151
-  const B = 1.5492
+  const A = 79.7022
+  const B = 4.2413
   const C = 0.0000
-  const D = 2.4308
-  const E = 1.0982
-  const L = 0.9093
-  const K = 0.0012
+  const D = 1.7353
+  const E = 0.8655
+  const L = 1.0000
+  const K = 0.0000
 
   let costF = 0
   let costB = 0
@@ -32,7 +32,7 @@ function getQuote(blankCost, quantity, frontColors, backColors) {
 export default function QuoteCalculator() {
   const [blankCost, setBlankCost] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [frontColors, setFrontColors] = useState(0);
+  const [frontColors, setFrontColors] = useState(1);
   const [backColors, setBackColors] = useState(0);
   const [quote, setQuote] = useState(null);
   const [formError, setFormError] = useState("");
