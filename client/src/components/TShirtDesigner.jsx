@@ -1,6 +1,7 @@
-import { Canvas, FabricImage } from "fabric";
-import { useEffect, useRef, useState } from "react";
+import { Canvas, FabricImage, filters } from "fabric";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Toolbar from "./Toolbar";
+import CheckoutPanel from "./CheckoutPanel";
 
 import "./TShirtDesigner.css";
 
@@ -19,6 +20,33 @@ export default function TShirtDesigner() {
       : setActiveCanvas(fabricCanvasFront.current);
     setIsFrontSide(!isFrontSide);
   };
+
+  const exportDesigns = useCallback(async () => {
+    const blobToDataUrl = (blob) =>
+      new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result);
+        r.onerror = reject;
+        r.readAsDataURL(blob);
+      });
+    let front = null;
+    let back = null;
+    if (fabricCanvasFront.current) {
+      const blob = await fabricCanvasFront.current.toBlob({
+        format: "png",
+        quality: 1,
+      });
+      front = blob ? await blobToDataUrl(blob) : null;
+    }
+    if (fabricCanvasBack.current) {
+      const blob = await fabricCanvasBack.current.toBlob({
+        format: "png",
+        quality: 1,
+      });
+      back = blob ? await blobToDataUrl(blob) : null;
+    }
+    return { front, back };
+  }, []);
 
   const handleSendEmail = async () => {
     // Create FormData
@@ -57,7 +85,7 @@ export default function TShirtDesigner() {
   };
 
   useEffect(() => {
-    const setUpCanvas = (canvasRef, shirtURL) => {
+    const setUpCanvas = (canvasRef, modelURL, shirtURL) => {
       if (canvasRef.current) {
         const initCanvas = new Canvas(canvasRef.current, {
           width: Math.min(window.innerWidth * 0.8, 800),
@@ -65,10 +93,54 @@ export default function TShirtDesigner() {
         });
 
         initCanvas.backgroundColor = "#fff";
+        let isPanning = false;
+        let lastPosX = 0;
+        let lastPosY = 0;
+
+        const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+        initCanvas.on("mouse:wheel", (opt) => {
+          const evt = opt.e;
+          const delta = evt.deltaY;
+          const zoom = initCanvas.getZoom();
+          const nextZoom = clamp(zoom * 0.999 ** delta, 0.4, 2.5);
+          const pointer = initCanvas.getPointer(evt);
+          initCanvas.zoomToPoint(pointer, nextZoom);
+          evt.preventDefault();
+          evt.stopPropagation();
+        });
+
+        initCanvas.on("mouse:down", (opt) => {
+          const evt = opt.e;
+          if (initCanvas.getZoom() <= 1) return;
+          if (evt.altKey || evt.button === 1) {
+            isPanning = true;
+            initCanvas.selection = false;
+            lastPosX = evt.clientX;
+            lastPosY = evt.clientY;
+          }
+        });
+
+        initCanvas.on("mouse:move", (opt) => {
+          if (!isPanning) return;
+          const evt = opt.e;
+          const vpt = initCanvas.viewportTransform;
+          if (!vpt) return;
+          vpt[4] += evt.clientX - lastPosX;
+          vpt[5] += evt.clientY - lastPosY;
+          initCanvas.requestRenderAll();
+          lastPosX = evt.clientX;
+          lastPosY = evt.clientY;
+        });
+
+        initCanvas.on("mouse:up", () => {
+          isPanning = false;
+          initCanvas.selection = true;
+        });
 
         // add non-interactive T-shirt background
         // --- Preload background image (non-interactive) ---
-        FabricImage.fromURL(shirtURL)
+        FabricImage.fromURL(modelURL)
           .then((img) => {
             const maxWidth = initCanvas.getWidth();
             const maxHeight = initCanvas.getHeight();
@@ -90,9 +162,42 @@ export default function TShirtDesigner() {
 
             initCanvas.add(img);
             initCanvas.centerObject(img);
-            initCanvas.requestRenderAll();
-            //setCanvas(initCanvas);
           })
+          .then(
+            FabricImage.fromURL(shirtURL).then((img) => {
+              const maxWidth = initCanvas.getWidth();
+              const maxHeight = initCanvas.getHeight();
+
+              const origW = img.get("width");
+              const origH = img.get("height");
+              const scaleX = maxWidth / origW;
+              const scaleY = maxHeight / origH;
+              const scale = Math.min(scaleX, scaleY);
+
+              img.set({
+                scaleX: scale,
+                scaleY: scale,
+                originX: "center",
+                originY: "center",
+                selectable: false, // lock it
+                evented: false, // no mouse events
+              });
+
+              const redFilter = new filters.BlendColor({
+                color: "#cc0000", // or dynamic color
+                mode: "multiply",
+                alpha: 1,
+              });
+
+              img.filters.push(redFilter);
+              img.applyFilters();
+
+              initCanvas.add(img);
+              initCanvas.centerObject(img);
+              initCanvas.requestRenderAll();
+              //setCanvas(initCanvas);
+            })
+          )
           .then(() => setIsDirty(false)); // sets dirty flag back to false after loading initial bg imgs
 
         //initCanvas.renderAll();
@@ -103,11 +208,13 @@ export default function TShirtDesigner() {
 
     fabricCanvasFront.current = setUpCanvas(
       canvasFrontRef,
-      "/t-shirt-background-front.jpg"
+      "/WhiteModelFront4.jpg",
+      "/white-front-mask.png"
     );
     fabricCanvasBack.current = setUpCanvas(
       canvasBackRef,
-      "/t-shirt-background-back.jpg"
+      "/t-shirt-background-back.jpg",
+      "/white-front-mask.png"
     );
 
     setActiveCanvas(fabricCanvasFront.current);
@@ -149,29 +256,45 @@ export default function TShirtDesigner() {
 
   return (
     <div className="designer-container">
-      <Toolbar canvas={activeCanvas} />
-      <div
-        style={{
-          border: "1px solid #ccc",
-          display: isFrontSide ? "block" : "none",
-        }}
-      >
-        <canvas className="canvas canvas-front" ref={canvasFrontRef} />
+      <div className="designer-header">
+        <div>
+          <p className="designer-eyebrow">T-Shirt Designer</p>
+          <h1 className="designer-title">Build Your Custom Tee</h1>
+          <p className="designer-subtitle">
+            Add shapes, upload art, then export or send your design.
+          </p>
+        </div>
+        <div className="designer-actions">
+          <button className="designer-secondary" onClick={handleToggleSide}>
+            {isFrontSide ? "View Back" : "View Front"}
+          </button>
+          <button className="designer-primary" onClick={handleSendEmail}>
+            Send to ApparelPromo
+          </button>
+        </div>
       </div>
-      <div
-        style={{
-          border: "1px solid #ccc",
-          display: isFrontSide ? "none" : "block",
-        }}
-      >
-        <canvas className="canvas canvas-back" ref={canvasBackRef} />
+
+      <div className="designer-layout">
+        <Toolbar canvas={activeCanvas} />
+        <CheckoutPanel exportDesigns={exportDesigns} />
+        <div className="designer-canvas-card">
+          <div
+            className="designer-canvas-wrap"
+            style={{ display: isFrontSide ? "block" : "none" }}
+          >
+            <canvas className="canvas canvas-front" ref={canvasFrontRef} />
+          </div>
+          <div
+            className="designer-canvas-wrap"
+            style={{ display: isFrontSide ? "none" : "block" }}
+          >
+            <canvas className="canvas canvas-back" ref={canvasBackRef} />
+          </div>
+          <div className="designer-hint">
+            Tip: drag, resize, or delete items from the toolbar.
+          </div>
+        </div>
       </div>
-      <button onClick={handleToggleSide}>
-        Switch to {isFrontSide ? "Back" : "Front"}
-      </button>
-      <button onClick={handleSendEmail}>
-        Send Your Design to ApparelPromo
-      </button>
     </div>
   );
 }

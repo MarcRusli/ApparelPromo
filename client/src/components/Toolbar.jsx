@@ -2,6 +2,31 @@ import { FabricImage, Rect, Circle } from "fabric";
 import "./Toolbar.css";
 
 export default function Toolbar({ canvas }) {
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+  const zoomTo = (nextZoom) => {
+    if (!canvas) return;
+    const zoom = clamp(nextZoom, 0.4, 2.5);
+    const center = canvas.getCenter();
+    canvas.zoomToPoint({ x: center.left, y: center.top }, zoom);
+    canvas.requestRenderAll();
+  };
+
+  const zoomIn = () => {
+    if (!canvas) return;
+    zoomTo(canvas.getZoom() + 0.1);
+  };
+
+  const zoomOut = () => {
+    if (!canvas) return;
+    zoomTo(canvas.getZoom() - 0.1);
+  };
+
+  const resetZoom = () => {
+    if (!canvas) return;
+    zoomTo(1);
+  };
+
   const addRectangle = () => {
     // check if canvas has been initialized
     if (canvas) {
@@ -98,11 +123,12 @@ export default function Toolbar({ canvas }) {
   
   return (
     <div className="designer-toolbar">
+      <div className="designer-toolbar-title">Tools</div>
       <button className="designer-toolbar-btn" onClick={addRectangle}>
-        Add a rectangle lol
+        Add Rectangle
       </button>
       <button className="designer-toolbar-btn" onClick={addCircle}>
-        Add a circle
+        Add Circle
       </button>
       <label htmlFor="image-upload" className="designer-toolbar-btn">
         Upload Image
@@ -119,11 +145,24 @@ export default function Toolbar({ canvas }) {
         className="designer-toolbar-btn delete-btn"
         onClick={deleteObject}
       >
-        Delete selected object(s)
+        Delete Selected
       </button>
       <button className="designer-toolbar-btn export-btn" onClick={exportAsPNG}>
-        Export as PNG
+        Export PNG
       </button>
+      <div className="designer-toolbar-divider" />
+      <div className="designer-toolbar-title">Zoom</div>
+      <div className="designer-zoom-row">
+        <button className="designer-toolbar-btn" onClick={zoomOut}>
+          -
+        </button>
+        <button className="designer-toolbar-btn" onClick={resetZoom}>
+          Reset
+        </button>
+        <button className="designer-toolbar-btn" onClick={zoomIn}>
+          +
+        </button>
+      </div>
     </div>
   );
 }

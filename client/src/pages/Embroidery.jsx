@@ -1,4 +1,4 @@
-import Footer from "../components/Footer";
+import "./Embroidery.css";
 
 export default function Embroidery() {
   return (
