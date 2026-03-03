@@ -1,6 +1,10 @@
 import { useState } from "react";
 import "./QuoteCalculator.css";
 
+function roundToNearestFiveCents(amount) {
+  return Math.round(amount * 20) / 20;
+}
+
 function getQuote(blankCost, quantity, frontColors, backColors) {
   const A = 96.9151
   const B = 1.5492
@@ -22,19 +26,38 @@ function getQuote(blankCost, quantity, frontColors, backColors) {
   let basePrice = blankCost + (A + B * (frontColors + backColors)) / quantity + C + costF + costB
   let discount = L + (1 - L) * Math.exp(-K * quantity)
 
-  return basePrice * discount;
+  return roundToNearestFiveCents(basePrice * discount);
 }
 
 export default function QuoteCalculator() {
-  const [blankCost, setBlankCost] = useState(0);
-  const [quantity, setQuantity] = useState(8);
-  const [frontColors, setFrontColors] = useState(0);
-  const [backColors, setBackColors] = useState(0);
+  const [blankCost, setBlankCost] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [frontColors, setFrontColors] = useState("");
+  const [backColors, setBackColors] = useState("");
   const [quote, setQuote] = useState(null);
+  const [formError, setFormError] = useState("");
 
   const handleGetQuote = (e) => {
     e.preventDefault();
-    const result = getQuote(blankCost, quantity, frontColors, backColors);
+    const missing = [];
+    if (blankCost === "") missing.push("Blank shirt cost");
+    if (quantity === "") missing.push("Quantity");
+    if (frontColors === "") missing.push("Front Colors");
+    if (backColors === "") missing.push("Back Colors");
+
+    if (missing.length > 0) {
+      setQuote(null);
+      setFormError(`Please fill in: ${missing.join(", ")}.`);
+      return;
+    }
+
+    setFormError("");
+    const result = getQuote(
+      Number(blankCost),
+      Number(quantity),
+      Number(frontColors),
+      Number(backColors)
+    );
     setQuote(result);
   };
 
@@ -58,7 +81,7 @@ export default function QuoteCalculator() {
               min="0"
               step="0.01"
               value={blankCost}
-              onChange={(e) => setBlankCost(parseFloat(e.target.value) || 0)}
+              onChange={(e) => setBlankCost(e.target.value)}
               onFocus={selectAllText}
             />
           </div>
@@ -72,7 +95,7 @@ export default function QuoteCalculator() {
               type="number"
               min="8"
               value={quantity}
-              onChange={(e) => setQuantity(parseInt(e.target.value, 10) || 8)}
+              onChange={(e) => setQuantity(e.target.value)}
               onFocus={selectAllText}
             />
           </div>
@@ -88,7 +111,7 @@ export default function QuoteCalculator() {
                 min="0"
                 max="6"
                 value={frontColors}
-                onChange={(e) => setFrontColors(parseInt(e.target.value, 10) || 0)}
+                onChange={(e) => setFrontColors(e.target.value)}
                 onFocus={selectAllText}
               />
             </div>
@@ -100,7 +123,7 @@ export default function QuoteCalculator() {
                 min="0"
                 max="6"
                 value={backColors}
-                onChange={(e) => setBackColors(parseInt(e.target.value, 10) || 0)}
+                onChange={(e) => setBackColors(e.target.value)}
                 onFocus={selectAllText}
               />
             </div>
@@ -112,6 +135,7 @@ export default function QuoteCalculator() {
             Get Quote
           </button>
         </form>
+        {formError && <div className="quote-error">{formError}</div>}
 
         <div
           className={`quote-result ${
