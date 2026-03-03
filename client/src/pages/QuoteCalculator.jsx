@@ -32,8 +32,8 @@ function getQuote(blankCost, quantity, frontColors, backColors) {
 export default function QuoteCalculator() {
   const [blankCost, setBlankCost] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [frontColors, setFrontColors] = useState("");
-  const [backColors, setBackColors] = useState("");
+  const [frontColors, setFrontColors] = useState(0);
+  const [backColors, setBackColors] = useState(0);
   const [quote, setQuote] = useState(null);
   const [formError, setFormError] = useState("");
 
@@ -68,7 +68,7 @@ export default function QuoteCalculator() {
   return (
     <div className="quote-calculator">
       <div className="quote-header">
-        <h1 className="quote-title">Get a Quote</h1>
+        <h1 className="quote-title">Get a Screen Print Quote</h1>
       </div>
 
       <div className="quote-card">
@@ -93,6 +93,7 @@ export default function QuoteCalculator() {
             <input
               id="quote-quantity"
               type="number"
+              placeholder="min: 8"
               min="8"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
