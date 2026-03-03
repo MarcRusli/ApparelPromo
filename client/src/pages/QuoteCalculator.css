@@ -1,0 +1,192 @@
+/* Custom Ink–style quote layout: clean, sectioned, centered, with dividers and tips */
+.quote-calculator {
+  --quote-ink: #1e1a18;
+  --quote-muted: #5a5a5a;
+  --quote-accent: #f8981d;
+  --quote-border: #e0e0e0;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 2.5vw, 3rem);
+  color: var(--quote-ink);
+  background: #fff;
+  text-align: center;
+}
+
+.quote-header {
+  margin-bottom: 1.5rem;
+}
+
+.quote-title {
+  font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+  margin: 0;
+  font-weight: 700;
+  color: var(--quote-ink);
+}
+
+.quote-card {
+  background: #fff;
+  border: 1px solid var(--quote-border);
+  border-radius: 8px;
+  padding: clamp(1.25rem, 2vw, 2rem);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.quote-product {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+.quote-product-label {
+  color: var(--quote-muted);
+}
+
+.quote-product strong {
+  color: var(--quote-ink);
+}
+
+.quote-divider {
+  border: none;
+  border-top: 1px solid var(--quote-border);
+  margin: 1.25rem 0;
+}
+
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+.quote-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.quote-section label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--quote-ink);
+}
+
+.quote-section input {
+  max-width: 8rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--quote-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--quote-ink);
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.quote-section input:focus {
+  outline: none;
+  border-color: var(--quote-accent);
+  box-shadow: 0 0 0 2px rgba(248, 152, 29, 0.2);
+}
+
+.quote-colors-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quote-colors-row .quote-section {
+  min-width: 120px;
+}
+
+.quote-button {
+  margin-top: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--quote-accent);
+  color: #1e1a18;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  width: fit-content;
+}
+
+.quote-button:hover {
+  background: #e68a1a;
+  transform: translateY(-1px);
+}
+
+.quote-result {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--quote-border);
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  max-height: 160px;
+  opacity: 1;
+  transition: max-height 0.3s ease, opacity 0.2s ease,
+    margin 0.2s ease, padding 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.quote-result.is-hidden {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  padding-top: 0;
+  border-top-color: transparent;
+  pointer-events: none;
+}
+
+.quote-result.is-visible {
+  max-height: 160px;
+  opacity: 1;
+}
+
+.quote-result-label {
+  font-size: 1rem;
+  color: var(--quote-muted);
+}
+
+.quote-result-amount {
+  font-size: 1.5rem;
+  color: var(--quote-ink);
+}
+
+.quote-tips {
+  background: #f8f9fa;
+  border: 1px solid var(--quote-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  text-align: left;
+}
+
+.quote-tips-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: var(--quote-ink);
+  text-align: center;
+}
+
+.quote-tips-list {
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  color: var(--quote-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  max-width: 28rem;
+}
+
+.quote-tips-list li {
+  margin-bottom: 0.35rem;
+}
+
+.quote-tips-list li:last-child {
+  margin-bottom: 0;
+}

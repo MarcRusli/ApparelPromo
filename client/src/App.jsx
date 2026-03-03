@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Designer from "./pages/Designer";
 import ScreenPrint from "./pages/ScreenPrint";
 import Embroidery from "./pages/Embroidery";
+import QuoteCalculator from "./pages/QuoteCalculator";
 import Footer from "./components/Footer";
 
 import { Routes, Route } from "react-router";
@@ -29,6 +30,7 @@ function App() {
         <Route path="/designer" element={<Designer />} />
         <Route path="/screen-print" element={<ScreenPrint />} />
         <Route path="/embroidery" element={<Embroidery />} />
+        <Route path="/quote" element={<QuoteCalculator />} />
         <Route path="/about-us" element={<About />} />
       </Routes>
       <Footer />

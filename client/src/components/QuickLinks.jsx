@@ -10,6 +10,9 @@ export default function QuickLinks() {
             <a href="/designer">Create Your Shirt</a>
           </li>
           <li>
+            <a href="/quote">Quick Quote</a>
+          </li>
+          <li>
             <a href="/screen-print">Screen Print</a>
           </li>
           <li>

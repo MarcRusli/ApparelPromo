@@ -16,6 +16,7 @@
   --ap-black: #1b3139;
   --ap-orange: #f8981d;
   --diminished-grey: #444444;
+  
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -32,6 +33,10 @@
   --space-xxl: calc(5.25 * var(--space-unit));
 
   --max-content-width: 1280px;
+}
+
+::selection {
+  background-color: #a7c9fd;
 }
 
 a {
