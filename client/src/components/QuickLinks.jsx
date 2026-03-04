@@ -8,22 +8,25 @@ export default function QuickLinks() {
       <nav className="responsive-container subnav">
         <ul className="quicklinks">
           <li>
-            <Link to="/designer">Create Your Shirt</Link>
+            <Link to="/designer">
+              Create Your Shirt
+              <span className="coming-soon-badge">Coming Soon</span>
+            </Link>
           </li>
           <li>
             <Link to="/quote">Quick Quote</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/screen-print">Screen Print</Link>
           </li>
           <li>
             <Link to="/embroidery">Embroidery</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/about-us">About</Link>
           </li>
         </ul>
-        <span><span style={{fontSize: "1.7em"}}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span> Cart</span>
+        <span><span style={{fontSize: "1.7em"}}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span> Cart <span className="coming-soon-badge">Coming Soon</span></span>
       </nav>
     </div>
   );

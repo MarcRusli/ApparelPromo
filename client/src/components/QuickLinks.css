@@ -20,6 +20,9 @@
 
 .quicklinks a {
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 @media (max-width: 900px) {

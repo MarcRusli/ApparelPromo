@@ -27,8 +27,8 @@ export default function Navbar() {
           <span className="nav-hamburger-bar" />
         </button>
         <address className="nav-contact">
-          <a href="mailto:sales.apparelpromo@gmail.com">
-            sales.apparelpromo@gmail.com
+          <a href="mailto:sales.globalmax@gmail.com">
+            sales.globalmax@gmail.com
           </a>
           <br />
           <a href="tel:+15104719010">+1 (510) 471-9010</a>
@@ -44,7 +44,10 @@ export default function Navbar() {
       >
         <ul className="nav-mobile-links" onClick={closeMenu}>
           <li>
-            <Link to="/designer">Create Your Shirt</Link>
+            <Link to="/designer">
+              Create Your Shirt
+              <span className="coming-soon-badge">Coming Soon</span>
+            </Link>
           </li>
           <li>
             <Link to="/quote">Quick Quote</Link>

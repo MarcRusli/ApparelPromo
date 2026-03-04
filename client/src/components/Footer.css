@@ -1,9 +1,106 @@
 #footer {
-  background-color: var(--ap-black);
-  color: white;
-  padding-top: var(--space-xxl);
-  padding-bottom: var(--space-xxl);
+  background: linear-gradient(180deg, #051329 0%, #030b1a 100%);
+  color: rgba(248, 249, 250, 0.82);
+  border-top: 1px solid rgba(248, 152, 29, 0.2);
 }
 
 .footer-container {
+  padding: clamp(2.2rem, 4vw, 3.4rem) var(--space-md) 2rem;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr 1.2fr;
+  align-items: start;
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.footer-brand h3 {
+  margin: 0 0 0.45rem;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-brand p {
+  margin: 0;
+  max-width: 34ch;
+  line-height: 1.55;
+  color: rgba(248, 249, 250, 0.72);
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.46rem;
+  font-style: normal;
+}
+
+.footer-column h4 {
+  margin: 0 0 0.55rem;
+  font-family: "DM Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ap-orange);
+}
+
+.footer-column a {
+  color: rgba(248, 249, 250, 0.82);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.footer-column a:hover {
+  color: var(--ap-orange);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(248, 249, 250, 0.12);
+}
+
+.footer-bottom-inner {
+  padding: 0.9rem var(--space-md) 1.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(248, 249, 250, 0.66);
+  font-size: 0.88rem;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-bottom-links a {
+  color: rgba(248, 249, 250, 0.82);
+  text-decoration: none;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--ap-orange);
+}
+
+@media (max-width: 980px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    padding: 1.8rem var(--space-sm) 1.4rem;
+    gap: 1.15rem;
+  }
+
+  .footer-bottom-inner {
+    padding: 0.75rem var(--space-sm) 0.95rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.55rem;
+  }
 }

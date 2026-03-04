@@ -13,3 +13,19 @@
 .diminished {
   color: var(--diminished-grey);
 }
+
+.coming-soon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-family: "DM Mono", monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(248, 152, 29, 0.18);
+  color: var(--ap-orange);
+  border: 1px solid rgba(248, 152, 29, 0.46);
+  line-height: 1.3;
+}

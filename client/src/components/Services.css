@@ -6,7 +6,6 @@
     radial-gradient(circle at 12% 12%, rgba(248, 152, 29, 0.12) 0%, transparent 42%),
     linear-gradient(180deg, var(--services-bg-top) 0%, var(--services-bg-bottom) 100%);
   border-top: 1px solid rgba(248, 152, 29, 0.22);
-  border-bottom: 1px solid rgba(248, 152, 29, 0.16);
 }
 
 .services-shell {

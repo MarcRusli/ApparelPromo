@@ -62,6 +62,13 @@
     color: white;
     font-weight: 600;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.nav-mobile-links .coming-soon-badge {
+    font-size: 0.56rem;
 }
 
 .nav-mobile-menu address {

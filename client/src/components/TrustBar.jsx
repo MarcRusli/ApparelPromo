@@ -15,30 +15,27 @@ export default function TrustBar() {
               <img src={millsHighImg} alt="Mills high school campus" />
             </div>
             <div className="trusted-group-card-body">
-              <span className="tag tag-school">School</span>
-              <h4>Mills High School</h4>
+              <h4>Schools</h4>
               <p>Spiritwear, sports team jerseys, and staff apparel.</p>
             </div>
           </div>
 
           <div className="trusted-group-card">
             <div className="trusted-group-card-header">
-              <img src={gladTidingsImg} alt="Glad Tidings church" />
+              <img src={gladTidingsImg} alt="Glad Tidings church group photo" />
             </div>
             <div className="trusted-group-card-body">
-              <span className="tag tag-church">Church</span>
-              <h4>Glad Tidings Church</h4>
+              <h4>Churches</h4>
               <p>Event shirts, volunteer uniforms, and ministry branding.</p>
             </div>
           </div>
 
           <div className="trusted-group-card">
             <div className="trusted-group-card-header">
-              <img src={gladTidingsImg} alt="Badminton community group" />
+              <img src="/local-badminton-sports-club-team-photo.png" alt="Badminton community group" />
             </div>
             <div className="trusted-group-card-body">
-              <span className="tag tag-community">Community</span>
-              <h4>Local Badminton Club</h4>
+              <h4>Sports Clubs</h4>
               <p>Team jerseys, tournament shirts, and supporter merch.</p>
             </div>
           </div>
