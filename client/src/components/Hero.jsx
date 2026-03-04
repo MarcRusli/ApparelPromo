@@ -1,45 +1,70 @@
 import "./Hero.css";
-import TrustIndicator from "./TrustIndicator";
-import heroImage from "../assets/apparelpromo-hero.png";
+import { Link } from "react-router";
 
 export default function Hero() {
   return (
     <section id="hero">
-      <div className="text-container">
-        <p className="hero-badge">Bay Area's Premier Custom Apparel</p>
-        <p className="hero-badge-sub">
+      <div className="hero-left">
+        <p className="hero-label">
           Family Owned and Operated Business Since 1993
         </p>
-        <h1 className="hero-title">
-          Custom Embroidery & Screen Printing Excellence
+        <h1 className="hero-headline">
+          Wear Your
+          <br />
+          <em>Brand.</em>
+          Own The
+          <br />
+          Room.
         </h1>
-        <p className="subheading diminished">
-          Professional custom apparel solutions for businesses, teams, and
-          events. From design to delivery, we make your brand stand out.
+        <p className="hero-sub">
+          Based in Hayward, we locally craft custom embroidery, screen printing,
+          and branded apparel for teams, companies, and creators who refuse to
+          blend in.
         </p>
-        <ul className="core-services">
-          <li>
-            <a href="_">Embroidery</a>
-          </li>
-          <li>
-            <a href="_">Screen Printing</a>
-          </li>
-          <li>
-            <a href="_">Digital Transfer</a>
-          </li>
-          <li>
-            <a href="_">Promotional Products</a>
-          </li>
-        </ul>
-        <span>Get Free Quote</span>
-        <span>View Our Work</span>
-        <ul className="trust-indicators">
-          <TrustIndicator text={"Local Hayward Business"} />
-          <TrustIndicator text={"20+ Years Experience"} />
-          <TrustIndicator text={"Quality Guaranteed"} />
-        </ul>
+        <div className="hero-actions">
+          <Link to="/quote">
+            <button className="btn-primary">Get a Free Quote</button>
+          </Link>
+
+          <a href="#services" className="btn-ghost">
+            See Our Work
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+              <path
+                d="M0 6H14M9 1L14 6L9 11"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </a>
+        </div>
+        <div className="hero-stats">
+          <div className="stat">
+            <div className="stat-num">
+              20<span>+</span>
+            </div>
+            <div className="stat-label">Years In Business</div>
+          </div>
+          <div className="stat">
+            <div className="stat-num">
+              1<span>k+</span>
+            </div>
+            <div className="stat-label">Happy Clients</div>
+          </div>
+          <div className="stat">
+            <div className="stat-num">
+              7<span>day</span>
+            </div>
+            <div className="stat-label">Avg. Turnaround</div>
+          </div>
+        </div>
       </div>
-      <img className="hero-image" src={heroImage}></img>
+      <div className="hero-right">
+        <img
+          className="hero-image"
+          src="/hero-image.png"
+          alt="Hero image of custom apparel"
+        />
+      </div>
     </section>
   );
 }

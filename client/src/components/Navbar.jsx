@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import "./Navbar.css";
 import apLogo from "../assets/apparelpromo-logo.png";
 
@@ -10,9 +11,9 @@ export default function Navbar() {
   return (
     <div className="nav-container">
       <nav className="topnav responsive-container">
-        <a className="logo-topnav" href="/">
+        <Link className="logo-topnav" to="/">
           <img src={apLogo} className="logo-topnav" alt="Apparel Promo logo" />
-        </a>
+        </Link>
         <button
           className="nav-hamburger"
           type="button"
@@ -43,19 +44,19 @@ export default function Navbar() {
       >
         <ul className="nav-mobile-links" onClick={closeMenu}>
           <li>
-            <a href="/designer">Create Your Shirt</a>
+            <Link to="/designer">Create Your Shirt</Link>
           </li>
           <li>
-            <a href="/quote">Quick Quote</a>
+            <Link to="/quote">Quick Quote</Link>
           </li>
           <li>
-            <a href="/screen-print">Screen Print</a>
+            <Link to="/screen-print">Screen Print</Link>
           </li>
           <li>
-            <a href="/embroidery">Embroidery</a>
+            <Link to="/embroidery">Embroidery</Link>
           </li>
           <li>
-            <a href="/about-us">About</a>
+            <Link to="/about-us">About</Link>
           </li>
         </ul>
         <address onClick={closeMenu}>

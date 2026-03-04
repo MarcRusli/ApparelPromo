@@ -1,5 +1,6 @@
 import "./QuickLinks.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router";
 
 export default function QuickLinks() {
   return (
@@ -7,19 +8,19 @@ export default function QuickLinks() {
       <nav className="responsive-container subnav">
         <ul className="quicklinks">
           <li>
-            <a href="/designer">Create Your Shirt</a>
+            <Link to="/designer">Create Your Shirt</Link>
           </li>
           <li>
-            <a href="/quote">Quick Quote</a>
+            <Link to="/quote">Quick Quote</Link>
           </li>
           <li>
-            <a href="/screen-print">Screen Print</a>
+            <Link to="/screen-print">Screen Print</Link>
           </li>
           <li>
-            <a href="/embroidery">Embroidery</a>
+            <Link to="/embroidery">Embroidery</Link>
           </li>
           <li>
-            <a href="/about-us">About</a>
+            <Link to="/about-us">About</Link>
           </li>
         </ul>
         <span><span style={{fontSize: "1.7em"}}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span> Cart</span>
