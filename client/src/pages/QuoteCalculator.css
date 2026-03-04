@@ -46,8 +46,8 @@
 }
 
 .quote-divider {
-  border: none;
-  border-top: 1px solid var(--quote-border);
+  border: 1px solid var(--quote-border);
+  width: 70%;
   margin: 1.25rem 0;
 }
 
