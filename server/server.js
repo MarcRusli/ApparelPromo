@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import path from "path";
@@ -30,25 +29,37 @@ const PORT = process.env.PORT || 8080;
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
+  process.env.FRONTEND_URL || null,
   "https://apparelpromo.com",
   "https://www.apparelpromo.com",
+  "https://apparelpromo.vercel.app",
 ].filter(Boolean);
 
-// CORS configuration
-const corsOptions = {
-  origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error(`CORS blocked for origin: ${origin}`));
-  },
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 204,
+const setCorsHeaders = (req, res) => {
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 };
 
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.use((req, res, next) => {
+  setCorsHeaders(req, res);
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  const origin = req.headers.origin;
+  if (origin && !allowedOrigins.includes(origin)) {
+    return res.status(403).json({ error: `CORS blocked for origin: ${origin}` });
+  }
+
+  return next();
+});
 
 // Middleware
 app.use(express.json({ limit: "50mb" }));
@@ -82,6 +93,7 @@ app.use((req, res) => {
 // Error handler
 app.use((err, req, res, next) => {
   console.error("Error:", err);
+  setCorsHeaders(req, res);
   res.status(500).json({ error: "Internal server error" });
 });
 
