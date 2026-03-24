@@ -8,6 +8,9 @@ export default function QuickLinks() {
       <nav className="responsive-container subnav">
         <ul className="quicklinks">
           <li>
+            <Link to="/quick-order">Quick Order</Link>
+          </li>
+          <li>
             <Link to="/designer">
               Create Your Shirt
               <span className="coming-soon-badge">Coming Soon</span>

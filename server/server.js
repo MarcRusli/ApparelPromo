@@ -2,13 +2,23 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Import routes
 import paymentRoutes from "./routes/payments.js";
 import orderRoutes from "./routes/orders.js";
 import uploadRoutes from "./routes/uploads.js";
+import quickOrderRoutes from "./routes/quickOrder.js";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Always load server/.env regardless of process cwd (e.g. running from repo root)
+const envPath = path.join(__dirname, ".env");
+dotenv.config({ path: envPath });
+console.log("ENV loaded from:", envPath);
+console.log("Server process.cwd():", process.cwd());
+console.log("RESEND_API_KEY loaded:", process.env.RESEND_API_KEY ? "✓ YES" : "✗ NO");
 
 // DEBUG: Check if STRIPE_SECRET_KEY loaded
 console.log("STRIPE_SECRET_KEY loaded:", process.env.STRIPE_SECRET_KEY ? "✓ YES" : "✗ NO");
@@ -42,6 +52,7 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use("/api/payments", paymentRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/uploads", uploadRoutes);
+app.use("/api/quick-order", quickOrderRoutes);
 
 // Health check
 app.get("/", (req, res) => {
