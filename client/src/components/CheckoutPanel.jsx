@@ -4,16 +4,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { SIZES, calculatePrice } from "../utils/pricing";
 import PaymentForm from "./PaymentForm";
 
-// #region agent log
 const envKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
-const envKeyType = typeof envKey;
-const envKeyValue = envKey || "pk_test_placeholder";
-fetch('http://127.0.0.1:7329/ingest/8d976868-4a3c-4f71-8e2d-77bf0dc8a368',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'cf161d'},body:JSON.stringify({sessionId:'cf161d',location:'CheckoutPanel.jsx:7',message:'Module init - env var check',data:{envKeyValue:envKeyValue,envKeyType:envKeyType,hasValue:!!envKey,allEnvKeys:Object.keys(import.meta.env).filter(k=>k.startsWith('VITE_'))},timestamp:Date.now(),runId:'run1',hypothesisId:'A,B,C'})}).catch(()=>{});
-// #endregion
-const stripePromise = loadStripe(envKeyValue);
-// #region agent log
-fetch('http://127.0.0.1:7329/ingest/8d976868-4a3c-4f71-8e2d-77bf0dc8a368',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'cf161d'},body:JSON.stringify({sessionId:'cf161d',location:'CheckoutPanel.jsx:8',message:'Module init - loadStripe called',data:{stripeKeyPassed:envKeyValue.substring(0,20)+'...',stripePromiseType:typeof stripePromise,isPromise:stripePromise instanceof Promise},timestamp:Date.now(),runId:'run1',hypothesisId:'A,B'})}).catch(()=>{});
-// #endregion
+const stripePromise = envKey ? loadStripe(envKey) : null;
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 
@@ -26,11 +18,6 @@ export default function CheckoutPanel({ exportDesigns }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [orderId, setOrderId] = useState(null);
-
-  // #region agent log
-  const componentEnvKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
-  fetch('http://127.0.0.1:7329/ingest/8d976868-4a3c-4f71-8e2d-77bf0dc8a368',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'cf161d'},body:JSON.stringify({sessionId:'cf161d',location:'CheckoutPanel.jsx:24',message:'Component mount - env var check',data:{envKeyValue:componentEnvKey,envKeyType:typeof componentEnvKey,hasValue:!!componentEnvKey,isUndefined:componentEnvKey===undefined,isNull:componentEnvKey===null,isEmptyString:componentEnvKey==='',allViteEnvKeys:Object.keys(import.meta.env).filter(k=>k.startsWith('VITE_')).map(k=>({key:k,value:import.meta.env[k]?.substring(0,10)+'...'||'empty'}))},timestamp:Date.now(),runId:'run1',hypothesisId:'A,C,D'})}).catch(()=>{});
-  // #endregion
 
   const totalPrice = calculatePrice(sizes);
   const totalQty = sizes.reduce((sum, s) => sum + s.quantity, 0);
@@ -185,13 +172,26 @@ export default function CheckoutPanel({ exportDesigns }) {
   }
 
   if (step === "payment") {
+    if (!stripePromise) {
+      return (
+        <div className="checkout-panel checkout-payment">
+          <h3 className="checkout-title">Complete payment</h3>
+          <p className="payment-error">
+            Payment is temporarily unavailable because the Stripe publishable key is not configured.
+          </p>
+          <div className="payment-actions">
+            <button type="button" className="payment-back" onClick={() => setStep("form")}>
+              Back
+            </button>
+          </div>
+        </div>
+      );
+    }
+
     const options = {
       clientSecret: paymentData.clientSecret,
       appearance: { theme: "stripe" },
     };
-    // #region agent log
-    fetch('http://127.0.0.1:7329/ingest/8d976868-4a3c-4f71-8e2d-77bf0dc8a368',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'cf161d'},body:JSON.stringify({sessionId:'cf161d',location:'CheckoutPanel.jsx:184',message:'Payment step - Elements render',data:{stripePromiseType:typeof stripePromise,stripePromiseIsNull:stripePromise===null,stripePromiseIsUndefined:stripePromise===undefined,currentEnvKey:import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY||'MISSING'},timestamp:Date.now(),runId:'run1',hypothesisId:'B,E'})}).catch(()=>{});
-    // #endregion
     return (
       <div className="checkout-panel checkout-payment">
         <h3 className="checkout-title">Complete payment</h3>
