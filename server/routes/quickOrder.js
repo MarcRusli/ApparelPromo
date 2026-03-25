@@ -106,7 +106,7 @@ router.post("/submit", async (req, res) => {
       },
       body: JSON.stringify({
         from: resendFrom,
-        to: ["marc.amisuta@gmail.com"],
+        to: ["orders@apparelpromo.com"],
         reply_to: contactEmail,
         subject,
         text,
