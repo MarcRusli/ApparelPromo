@@ -27,8 +27,8 @@ export default function Navbar() {
           <span className="nav-hamburger-bar" />
         </button>
         <address className="nav-contact">
-          <a href="mailto:sales.globalmax@gmail.com">
-            sales.globalmax@gmail.com
+          <a href="mailto:orders@apparelpromo@gmail.com">
+            orders@apparelpromo.com
           </a>
           <br />
           <a href="tel:+15104719010">+1 (510) 471-9010</a>
