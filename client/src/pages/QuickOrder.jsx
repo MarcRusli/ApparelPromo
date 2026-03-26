@@ -577,6 +577,7 @@ export default function QuickOrder() {
                 id="front-design-upload"
                 className="sr-only"
                 type="file"
+                accept=".png, .jpg, .jpeg, .pdf, .ai, .svg"
                 disabled={frontPlacement === "none"}
                 onChange={handleFrontDesignUpload}
               />
@@ -786,6 +787,7 @@ export default function QuickOrder() {
                 id="back-design-upload"
                 className="sr-only"
                 type="file"
+                accept=".png, .jpg, .jpeg, .pdf, .ai, .svg"
                 disabled={!backFeatures.backDesign}
                 onChange={handleBackDesignUpload}
               />
