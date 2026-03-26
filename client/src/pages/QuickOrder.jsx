@@ -5,10 +5,10 @@ const API_BASE = import.meta.env.VITE_API_URL || "";
 
 const OPTIONS = [
   {
-    id: "sports-team-jersey",
-    title: "Sports Team Jersey",
-    description: "Build a team jersey order for schools, clubs, and leagues.",
-    image: "/sports-team-jersey.jpg",
+    id: "badminton-team",
+    title: "Badminton Team",
+    description: "Build a team apparel order for schools, clubs, and leagues.",
+    image: "/badminton-team-jersey.png",
     isAvailable: true,
   },
   {
@@ -30,61 +30,45 @@ const OPTIONS = [
 const SHIRT_MODELS = [
   {
     id: "A4N3142",
-    name: "A4 Cooling Performance Short Sleeve Tee",
-    image: "/a4-cooling-performance-tee-royal.jpg",
+    name: "A4 Performance Tee",
+    image: "/a4-tees/a4-royal.jpg",
     description:
-      "A top choice for sports and exercise, this tee combines a comfortable fit with performance features such as moisture wicking and sun protection.",
+      "A top choice for many high school teams, this tee offers a unisex fit with performance features such as moisture wicking and sun protection.",
     price: "$7.50",
-  },
-  {
-    id: "classic-team-v2",
-    name: "Classic Team V2",
-    image: "/t-shirt-background-front.jpg",
-    description:
-      "Balanced everyday jersey with lightweight comfort and strong print results.",
-    price: "$24.95",
-  },
-  {
-    id: "rival-mesh-v3",
-    name: "Rival Mesh V3",
-    image: "/t-shirt-background-back.jpg",
-    description:
-      "Breathable mesh panel jersey designed for high-movement sports and training.",
-    price: "$34.95",
   },
 ];
 
 const A4_COLOR_SWATCHES = [
-  { name: "Royal", hex: "#0047AB", pms: "7687C" },
-  { name: "Black", hex: "#2C2C2C", pms: "Black C" },
-  { name: "Navy", hex: "#000080", pms: "533C" },
-  { name: "White", hex: "#FFFFFF", pms: "White" },
-  { name: "Scarlet", hex: "#CE1126", pms: "200C" },
-  { name: "Graphite", hex: "#53565A", pms: "7540C" },
-  { name: "Silver", hex: "#A2AAAD", pms: "429C" },
-  { name: "Teal", hex: "#008080", pms: "322C" },
-  { name: "Forest", hex: "#013220", pms: "5535C" },
-  { name: "Maroon", hex: "#500000", pms: "504C" },
-  { name: "Cardinal", hex: "#C41E3A", pms: "7421C" },
-  { name: "Purple", hex: "#4B0082", pms: "7672C" },
-  { name: "Kelly", hex: "#009A44", pms: "341C" },
-  { name: "Gold", hex: "#FFD700", pms: "1235C" },
-  { name: "Light Blue", hex: "#ADD8E6", pms: "644C" },
-  { name: "Athletic Orange", hex: "#FF6600", pms: "172C" },
-  { name: "Safety Orange", hex: "#FF671F", pms: "021C" },
-  { name: "Safety Yellow", hex: "#E1E000", pms: "809C" },
-  { name: "Lime", hex: "#32CD32", pms: "375C" },
-  { name: "Electric Blue", hex: "#0072CE", pms: "2147C" },
-  { name: "Coral", hex: "#FF7F50", pms: "171C" },
-  { name: "Pink", hex: "#FFC0CB", pms: "189C" },
-  { name: "Fuchsia", hex: "#FF00FF", pms: "219C" },
-  { name: "Light Yellow", hex: "#FFFFE0", pms: "120C" },
-  { name: "Military Green", hex: "#4B5320", pms: "7771C" },
-  { name: "Olive", hex: "#808000", pms: "5743C" },
-  { name: "Pastel Blue", hex: "#B0C4DE", pms: "543C" },
-  { name: "Pastel Mint", hex: "#B2E2E2", pms: "344C" },
-  { name: "Sand", hex: "#C2B280", pms: "453C" },
-  { name: "Vegas Gold", hex: "#C5B358", pms: "4525C" },
+  { name: "White", hex: "#FFFFFF", pms: "White", image: "/a4-tees/a4-white.jpg" },
+  { name: "Silver", hex: "#A2AAAD", pms: "429C", image: "/a4-tees/a4-silver.jpg" },
+  { name: "Graphite", hex: "#53565A", pms: "7540C", image: "/a4-tees/a4-graphite.jpg" },
+  { name: "Black", hex: "#2C2C2C", pms: "Black C", image: "/a4-tees/a4-black.jpg" },
+  { name: "Light Blue", hex: "#ADD8E6", pms: "644C", image: "/a4-tees/a4-light-blue.jpg" },
+  { name: "Pastel Blue", hex: "#B0C4DE", pms: "543C", image: "/a4-tees/a4-pastel-blue.jpg" },
+  { name: "Electric Blue", hex: "#0072CE", pms: "2147C", image: "/a4-tees/a4-electric-blue.jpg" },
+  { name: "Royal", hex: "#0047AB", pms: "7687C", image: "/a4-tees/a4-royal.jpg" },
+  { name: "Navy", hex: "#000080", pms: "533C", image: "/a4-tees/a4-navy.jpg" },
+  { name: "Pastel Mint", hex: "#B2E2E2", pms: "344C", image: "/a4-tees/a4-pastel-mint.jpg" },
+  { name: "Teal", hex: "#008080", pms: "322C", image: "/a4-tees/a4-teal.jpg" },
+  { name: "Lime", hex: "#32CD32", pms: "375C", image: "/a4-tees/a4-lime.jpg" },
+  { name: "Kelly", hex: "#009A44", pms: "341C", image: "/a4-tees/a4-kelly.jpg" },
+  { name: "Forest", hex: "#013220", pms: "5535C", image: "/a4-tees/a4-forest.jpg" },
+  { name: "Military Green", hex: "#4B5320", pms: "7771C", image: "/a4-tees/a4-military-green.jpg" },
+  { name: "Olive", hex: "#808000", pms: "5743C", image: "/a4-tees/a4-olive.jpg" },
+  { name: "Pink", hex: "#FFC0CB", pms: "189C", image: "/a4-tees/a4-pink.jpg" },
+  { name: "Coral", hex: "#FF7F50", pms: "171C", image: "/a4-tees/a4-coral.jpg" },
+  { name: "Scarlet", hex: "#CE1126", pms: "200C", image: "/a4-tees/a4-scarlet.jpg" },
+  { name: "Cardinal", hex: "#C41E3A", pms: "7421C", image: "/a4-tees/a4-cardinal.jpg" },
+  { name: "Maroon", hex: "#500000", pms: "504C", image: "/a4-tees/a4-maroon.jpg" },
+  { name: "Fuchsia", hex: "#FF00FF", pms: "219C", image: "/a4-tees/a4-fuchsia.jpg" },
+  { name: "Purple", hex: "#4B0082", pms: "7672C", image: "/a4-tees/a4-purple.jpg" },
+  { name: "Athletic Orange", hex: "#FF6600", pms: "172C", image: "/a4-tees/a4-athletic-orange.jpg" },
+  { name: "Safety Orange", hex: "#FF671F", pms: "021C", image: "/a4-tees/a4-safety-orange.jpg" },
+  { name: "Sand", hex: "#C2B280", pms: "453C", image: "/a4-tees/a4-sand.jpg" },
+  { name: "Vegas Gold", hex: "#C5B358", pms: "4525C", image: "/a4-tees/a4-vegas-gold.jpg" },
+  { name: "Gold", hex: "#FFD700", pms: "1235C", image: "/a4-tees/a4-gold.jpg" },
+  { name: "Light Yellow", hex: "#FFFFE0", pms: "120C", image: "/a4-tees/a4-light-yellow.jpg" },
+  { name: "Safety Yellow", hex: "#E1E000", pms: "809C", image: "/a4-tees/a4-safety-yellow.jpg" },
 ];
 
 export default function QuickOrder() {
@@ -210,6 +194,13 @@ export default function QuickOrder() {
   const selectedModelDetails = SHIRT_MODELS.find(
     (model) => model.id === selectedModel,
   );
+  const selectedA4Color = A4_COLOR_SWATCHES.find((swatch) => swatch.name === selectedColor);
+  const getModelImage = (model) => {
+    if (model.id === "A4N3142" && selectedA4Color?.image) {
+      return selectedA4Color.image;
+    }
+    return model.image;
+  };
   const showColorPanel = phase === "shirt-model" && Boolean(selectedModel);
   const showA4Colors = selectedModel === "A4N3142";
   const canContinueToFrontDesign = showA4Colors && Boolean(selectedColor);
@@ -324,7 +315,7 @@ export default function QuickOrder() {
           {phase === "order-type"
             ? "Choose Your Order Type"
             : phase === "shirt-model"
-              ? "Pick a Shirt Model"
+              ? "Pick a Model"
               : phase === "front-design"
                 ? "Front Design"
                 : phase === "back-design"
@@ -408,7 +399,7 @@ export default function QuickOrder() {
                 <div className="quick-order-model-image-wrap">
                   <img
                     className="quick-order-model-image"
-                    src={model.image}
+                    src={getModelImage(model)}
                     alt={model.name}
                     loading="lazy"
                   />

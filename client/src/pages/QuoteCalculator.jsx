@@ -147,7 +147,7 @@ export default function QuoteCalculator() {
             <>
               <span className="quote-result-label">Your quote:</span>
               <strong className="quote-result-amount">
-                ${typeof quote === "number" ? quote.toFixed(2) : "—"}
+                ${typeof quote === "number" ? quote.toFixed(2) : "—"} per shirt
               </strong>
             </>
           )}
