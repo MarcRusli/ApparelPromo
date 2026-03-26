@@ -39,36 +39,156 @@ const SHIRT_MODELS = [
 ];
 
 const A4_COLOR_SWATCHES = [
-  { name: "White", hex: "#FFFFFF", pms: "White", image: "/a4-tees/a4-white.jpg" },
-  { name: "Silver", hex: "#A2AAAD", pms: "429C", image: "/a4-tees/a4-silver.jpg" },
-  { name: "Graphite", hex: "#53565A", pms: "7540C", image: "/a4-tees/a4-graphite.jpg" },
-  { name: "Black", hex: "#2C2C2C", pms: "Black C", image: "/a4-tees/a4-black.jpg" },
-  { name: "Light Blue", hex: "#ADD8E6", pms: "644C", image: "/a4-tees/a4-light-blue.jpg" },
-  { name: "Pastel Blue", hex: "#B0C4DE", pms: "543C", image: "/a4-tees/a4-pastel-blue.jpg" },
-  { name: "Electric Blue", hex: "#0072CE", pms: "2147C", image: "/a4-tees/a4-electric-blue.jpg" },
-  { name: "Royal", hex: "#0047AB", pms: "7687C", image: "/a4-tees/a4-royal.jpg" },
+  {
+    name: "White",
+    hex: "#FFFFFF",
+    pms: "White",
+    image: "/a4-tees/a4-white.jpg",
+  },
+  {
+    name: "Silver",
+    hex: "#A2AAAD",
+    pms: "429C",
+    image: "/a4-tees/a4-silver.jpg",
+  },
+  {
+    name: "Graphite",
+    hex: "#53565A",
+    pms: "7540C",
+    image: "/a4-tees/a4-graphite.jpg",
+  },
+  {
+    name: "Black",
+    hex: "#2C2C2C",
+    pms: "Black C",
+    image: "/a4-tees/a4-black.jpg",
+  },
+  {
+    name: "Light Blue",
+    hex: "#ADD8E6",
+    pms: "644C",
+    image: "/a4-tees/a4-light-blue.jpg",
+  },
+  {
+    name: "Pastel Blue",
+    hex: "#B0C4DE",
+    pms: "543C",
+    image: "/a4-tees/a4-pastel-blue.jpg",
+  },
+  {
+    name: "Electric Blue",
+    hex: "#0072CE",
+    pms: "2147C",
+    image: "/a4-tees/a4-electric-blue.jpg",
+  },
+  {
+    name: "Royal",
+    hex: "#0047AB",
+    pms: "7687C",
+    image: "/a4-tees/a4-royal.jpg",
+  },
   { name: "Navy", hex: "#000080", pms: "533C", image: "/a4-tees/a4-navy.jpg" },
-  { name: "Pastel Mint", hex: "#B2E2E2", pms: "344C", image: "/a4-tees/a4-pastel-mint.jpg" },
+  {
+    name: "Pastel Mint",
+    hex: "#B2E2E2",
+    pms: "344C",
+    image: "/a4-tees/a4-pastel-mint.jpg",
+  },
   { name: "Teal", hex: "#008080", pms: "322C", image: "/a4-tees/a4-teal.jpg" },
   { name: "Lime", hex: "#32CD32", pms: "375C", image: "/a4-tees/a4-lime.jpg" },
-  { name: "Kelly", hex: "#009A44", pms: "341C", image: "/a4-tees/a4-kelly.jpg" },
-  { name: "Forest", hex: "#013220", pms: "5535C", image: "/a4-tees/a4-forest.jpg" },
-  { name: "Military Green", hex: "#4B5320", pms: "7771C", image: "/a4-tees/a4-military-green.jpg" },
-  { name: "Olive", hex: "#808000", pms: "5743C", image: "/a4-tees/a4-olive.jpg" },
+  {
+    name: "Kelly",
+    hex: "#009A44",
+    pms: "341C",
+    image: "/a4-tees/a4-kelly.jpg",
+  },
+  {
+    name: "Forest",
+    hex: "#013220",
+    pms: "5535C",
+    image: "/a4-tees/a4-forest.jpg",
+  },
+  {
+    name: "Military Green",
+    hex: "#4B5320",
+    pms: "7771C",
+    image: "/a4-tees/a4-military-green.jpg",
+  },
+  {
+    name: "Olive",
+    hex: "#808000",
+    pms: "5743C",
+    image: "/a4-tees/a4-olive.jpg",
+  },
   { name: "Pink", hex: "#FFC0CB", pms: "189C", image: "/a4-tees/a4-pink.jpg" },
-  { name: "Coral", hex: "#FF7F50", pms: "171C", image: "/a4-tees/a4-coral.jpg" },
-  { name: "Scarlet", hex: "#CE1126", pms: "200C", image: "/a4-tees/a4-scarlet.jpg" },
-  { name: "Cardinal", hex: "#C41E3A", pms: "7421C", image: "/a4-tees/a4-cardinal.jpg" },
-  { name: "Maroon", hex: "#500000", pms: "504C", image: "/a4-tees/a4-maroon.jpg" },
-  { name: "Fuchsia", hex: "#FF00FF", pms: "219C", image: "/a4-tees/a4-fuchsia.jpg" },
-  { name: "Purple", hex: "#4B0082", pms: "7672C", image: "/a4-tees/a4-purple.jpg" },
-  { name: "Athletic Orange", hex: "#FF6600", pms: "172C", image: "/a4-tees/a4-athletic-orange.jpg" },
-  { name: "Safety Orange", hex: "#FF671F", pms: "021C", image: "/a4-tees/a4-safety-orange.jpg" },
+  {
+    name: "Coral",
+    hex: "#FF7F50",
+    pms: "171C",
+    image: "/a4-tees/a4-coral.jpg",
+  },
+  {
+    name: "Scarlet",
+    hex: "#CE1126",
+    pms: "200C",
+    image: "/a4-tees/a4-scarlet.jpg",
+  },
+  {
+    name: "Cardinal",
+    hex: "#C41E3A",
+    pms: "7421C",
+    image: "/a4-tees/a4-cardinal.jpg",
+  },
+  {
+    name: "Maroon",
+    hex: "#500000",
+    pms: "504C",
+    image: "/a4-tees/a4-maroon.jpg",
+  },
+  {
+    name: "Fuchsia",
+    hex: "#FF00FF",
+    pms: "219C",
+    image: "/a4-tees/a4-fuchsia.jpg",
+  },
+  {
+    name: "Purple",
+    hex: "#4B0082",
+    pms: "7672C",
+    image: "/a4-tees/a4-purple.jpg",
+  },
+  {
+    name: "Athletic Orange",
+    hex: "#FF6600",
+    pms: "172C",
+    image: "/a4-tees/a4-athletic-orange.jpg",
+  },
+  {
+    name: "Safety Orange",
+    hex: "#FF671F",
+    pms: "021C",
+    image: "/a4-tees/a4-safety-orange.jpg",
+  },
   { name: "Sand", hex: "#C2B280", pms: "453C", image: "/a4-tees/a4-sand.jpg" },
-  { name: "Vegas Gold", hex: "#C5B358", pms: "4525C", image: "/a4-tees/a4-vegas-gold.jpg" },
+  {
+    name: "Vegas Gold",
+    hex: "#C5B358",
+    pms: "4525C",
+    image: "/a4-tees/a4-vegas-gold.jpg",
+  },
   { name: "Gold", hex: "#FFD700", pms: "1235C", image: "/a4-tees/a4-gold.jpg" },
-  { name: "Light Yellow", hex: "#FFFFE0", pms: "120C", image: "/a4-tees/a4-light-yellow.jpg" },
-  { name: "Safety Yellow", hex: "#E1E000", pms: "809C", image: "/a4-tees/a4-safety-yellow.jpg" },
+  {
+    name: "Light Yellow",
+    hex: "#FFFFE0",
+    pms: "120C",
+    image: "/a4-tees/a4-light-yellow.jpg",
+  },
+  {
+    name: "Safety Yellow",
+    hex: "#E1E000",
+    pms: "809C",
+    image: "/a4-tees/a4-safety-yellow.jpg",
+  },
 ];
 
 export default function QuickOrder() {
@@ -79,23 +199,43 @@ export default function QuickOrder() {
   const [shirtModelAlert, setShirtModelAlert] = useState("");
   const [frontPlacement, setFrontPlacement] = useState("none");
   const [frontDesignColors, setFrontDesignColors] = useState(0);
+  const [frontDesignColorsOverflow, setFrontDesignColorsOverflow] =
+    useState(false);
   const [frontDesignFile, setFrontDesignFile] = useState(null);
   const [frontDesignFileName, setFrontDesignFileName] = useState("");
   const [frontPhaseAlert, setFrontPhaseAlert] = useState("");
+  const [frontFieldAlerts, setFrontFieldAlerts] = useState({
+    upload: "",
+    colors: "",
+  });
   const [backSpreadsheetFile, setBackSpreadsheetFile] = useState(null);
   const [backSpreadsheetFileName, setBackSpreadsheetFileName] = useState("");
   const [backDesignFile, setBackDesignFile] = useState(null);
   const [backDesignFileName, setBackDesignFileName] = useState("");
   const [backDesignColors, setBackDesignColors] = useState(0);
+  const [backDesignColorsOverflow, setBackDesignColorsOverflow] =
+    useState(false);
+  const [backOrganizationName, setBackOrganizationName] = useState("");
+  const [backPhaseAlert, setBackPhaseAlert] = useState("");
+  const [backFieldAlerts, setBackFieldAlerts] = useState({
+    spreadsheet: "",
+    organization: "",
+    upload: "",
+    colors: "",
+  });
   const [shippingMethod, setShippingMethod] = useState("delivery");
   const [shippingAddress, setShippingAddress] = useState("");
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
-  const [sendOrderStatus, setSendOrderStatus] = useState({ state: "idle", message: "" });
+  const [sendOrderStatus, setSendOrderStatus] = useState({
+    state: "idle",
+    message: "",
+  });
   const [backFeatures, setBackFeatures] = useState({
     name: false,
     title: false,
+    organization: false,
     backDesign: false,
   });
 
@@ -117,29 +257,34 @@ export default function QuickOrder() {
     setShirtModelAlert("");
     setFrontPlacement("none");
     setFrontDesignColors(0);
+    setFrontDesignColorsOverflow(false);
     setFrontDesignFile(null);
     setFrontDesignFileName("");
     setFrontPhaseAlert("");
+    setFrontFieldAlerts({ upload: "", colors: "" });
     setBackSpreadsheetFile(null);
     setBackSpreadsheetFileName("");
     setBackDesignFile(null);
     setBackDesignFileName("");
     setBackDesignColors(0);
-    setBackFeatures({ name: false, title: false, backDesign: false });
+    setBackDesignColorsOverflow(false);
+    setBackOrganizationName("");
+    setBackPhaseAlert("");
+    setBackFieldAlerts({ spreadsheet: "", organization: "", upload: "", colors: "" });
+    setBackFeatures({ name: false, title: false, organization: false, backDesign: false });
   };
 
   const handleFrontPlacementChange = (value) => {
     setFrontPlacement(value);
     setFrontPhaseAlert("");
+    setFrontFieldAlerts({ upload: "", colors: "" });
     if (value === "none") {
       setFrontDesignColors(0);
+      setFrontDesignColorsOverflow(false);
       return;
     }
-    setFrontDesignColors((current) => {
-      if (current < 1) return 1;
-      if (current > 4) return 4;
-      return current;
-    });
+    setFrontDesignColors("");
+    setFrontDesignColorsOverflow(false);
   };
 
   const handleFrontDesignUpload = (event) => {
@@ -147,17 +292,37 @@ export default function QuickOrder() {
     setFrontDesignFile(file || null);
     setFrontDesignFileName(file ? file.name : "");
     setFrontPhaseAlert("");
+    setFrontFieldAlerts((current) => ({
+      ...current,
+      upload: "",
+    }));
   };
 
   const handleContinueToBackDesign = () => {
-    const needsUpload = frontPlacement === "full-front" || frontPlacement === "left-chest";
-    if (needsUpload && !frontDesignFileName) {
+    const needsUpload =
+      frontPlacement === "full-front" || frontPlacement === "left-chest";
+    const nextFieldAlerts = {
+      upload:
+        needsUpload && !frontDesignFileName
+          ? "Upload a front design before continuing."
+          : "",
+      colors:
+        needsUpload && !frontDesignColorsOverflow && !frontDesignColors
+          ? "Enter the number of design colors or select 5+."
+          : "",
+    };
+
+    setFrontFieldAlerts(nextFieldAlerts);
+
+    if (nextFieldAlerts.upload || nextFieldAlerts.colors) {
       setFrontPhaseAlert(
-        "Upload a front design before continuing when Full Front or Left Chest is selected.",
+        "Complete the highlighted front design fields before continuing.",
       );
       return;
     }
+
     setFrontPhaseAlert("");
+    setFrontFieldAlerts({ upload: "", colors: "" });
     setPhase("back-design");
   };
 
@@ -166,10 +331,37 @@ export default function QuickOrder() {
       const nextValue = !current[feature];
       if (feature === "backDesign") {
         if (nextValue) {
-          setBackDesignColors((colorCount) => (colorCount < 1 ? 1 : colorCount));
+          setBackDesignColors("");
+          setBackDesignColorsOverflow(false);
+          setBackPhaseAlert("");
+          setBackFieldAlerts({
+            spreadsheet: "",
+            organization: "",
+            upload: "",
+            colors: "",
+          });
         } else {
+          setBackDesignFile(null);
           setBackDesignColors(0);
+          setBackDesignColorsOverflow(false);
           setBackDesignFileName("");
+          setBackPhaseAlert("");
+          setBackFieldAlerts({
+            spreadsheet: "",
+            organization: "",
+            upload: "",
+            colors: "",
+          });
+        }
+      }
+      if (feature === "organization") {
+        setBackPhaseAlert("");
+        setBackFieldAlerts((alerts) => ({
+          ...alerts,
+          organization: "",
+        }));
+        if (!nextValue) {
+          setBackOrganizationName("");
         }
       }
       return {
@@ -183,18 +375,72 @@ export default function QuickOrder() {
     const file = event.target.files?.[0];
     setBackSpreadsheetFile(file || null);
     setBackSpreadsheetFileName(file ? file.name : "");
+    setBackPhaseAlert("");
+    setBackFieldAlerts((current) => ({
+      ...current,
+      spreadsheet: "",
+    }));
   };
 
   const handleBackDesignUpload = (event) => {
     const file = event.target.files?.[0];
     setBackDesignFile(file || null);
     setBackDesignFileName(file ? file.name : "");
+    setBackPhaseAlert("");
+    setBackFieldAlerts((current) => ({
+      ...current,
+      upload: "",
+    }));
+  };
+
+  const handleContinueToShipping = () => {
+    if (!backFeatures.backDesign) {
+      setBackPhaseAlert("");
+    }
+
+    const nextFieldAlerts = {
+      spreadsheet: !backSpreadsheetFileName
+        ? "Upload the sizing spreadsheet before continuing."
+        : "",
+      organization:
+        backFeatures.organization && !backOrganizationName.trim()
+          ? "Enter the school, team, or organization name."
+          : "",
+      upload:
+        backFeatures.backDesign && !backDesignFileName
+          ? "Upload a back design before continuing."
+          : "",
+      colors:
+        backFeatures.backDesign && !backDesignColorsOverflow && !backDesignColors
+          ? "Enter the number of design colors or select 5+."
+          : "",
+    };
+
+    setBackFieldAlerts(nextFieldAlerts);
+
+    if (
+      nextFieldAlerts.spreadsheet ||
+      nextFieldAlerts.organization ||
+      nextFieldAlerts.upload ||
+      nextFieldAlerts.colors
+    ) {
+      setBackPhaseAlert(
+        "Complete the highlighted back design fields before continuing.",
+      );
+      return;
+    }
+
+    setBackPhaseAlert("");
+    setBackFieldAlerts({ spreadsheet: "", organization: "", upload: "", colors: "" });
+    setPhase("shipping-confirmation");
   };
 
   const selectedModelDetails = SHIRT_MODELS.find(
     (model) => model.id === selectedModel,
   );
-  const selectedA4Color = A4_COLOR_SWATCHES.find((swatch) => swatch.name === selectedColor);
+  const selectedA4Color = A4_COLOR_SWATCHES.find(
+    (swatch) => swatch.name === selectedColor,
+  );
   const getModelImage = (model) => {
     if (model.id === "A4N3142" && selectedA4Color?.image) {
       return selectedA4Color.image;
@@ -206,10 +452,36 @@ export default function QuickOrder() {
   const canContinueToFrontDesign = showA4Colors && Boolean(selectedColor);
   const showFullFront = frontPlacement === "full-front";
   const showLeftChest = frontPlacement === "left-chest";
+  const activeBackTextFeatures = [
+    backFeatures.name ? "name" : null,
+    backFeatures.organization ? "organization" : null,
+    backFeatures.title ? "title" : null,
+  ].filter(Boolean);
+  const getBackTextHighlightTop = (feature) => {
+    if (activeBackTextFeatures.length === 1) return "21%";
+    if (activeBackTextFeatures.length === 2) {
+      if (backFeatures.title && backFeatures.name && !backFeatures.organization) {
+        if (feature === "title") return "17%";
+        if (feature === "name") return "25%";
+      }
+      if (backFeatures.title && !backFeatures.name && backFeatures.organization) {
+        if (feature === "title") return "17%";
+        if (feature === "organization") return "25%";
+      }
+      const index = activeBackTextFeatures.indexOf(feature);
+      return index === 0 ? "17%" : "25%";
+    }
+    if (activeBackTextFeatures.length === 3) {
+      if (feature === "name") return "17%";
+      if (feature === "organization") return "25%";
+      if (feature === "title") return "70%";
+    }
+    return undefined;
+  };
   const spreadsheetFields = ["Style", "Size"];
   if (backFeatures.name) spreadsheetFields.push("Name");
   if (backFeatures.title) spreadsheetFields.push("Title");
-  const spreadsheetLabel = `Upload ${spreadsheetFields.join("/") } Spreadsheet`;
+  const spreadsheetLabel = `Upload ${spreadsheetFields.join("/")} Spreadsheet`;
 
   const parsePrice = (value) => {
     if (!value) return 0;
@@ -217,17 +489,35 @@ export default function QuickOrder() {
     return Number.isFinite(num) ? num : 0;
   };
 
-  const baseUnitPrice = selectedModelDetails ? parsePrice(selectedModelDetails.price) : 0;
+  const baseUnitPrice = selectedModelDetails
+    ? parsePrice(selectedModelDetails.price)
+    : 0;
+  const effectiveFrontColorCount = frontDesignColorsOverflow
+    ? "5+"
+    : frontDesignColors;
+  const frontPrintColorCountForEstimate = frontDesignColorsOverflow
+    ? 4
+    : Math.max(1, Number(frontDesignColors) || 0);
   const frontPrintUnit =
-    frontPlacement === "none" ? 0 : 2 + Math.max(1, frontDesignColors) * 1.5;
+    frontPlacement === "none"
+      ? 0
+      : 2 + frontPrintColorCountForEstimate * 1.5;
+  const effectiveBackColorCount = backDesignColorsOverflow ? "5+" : backDesignColors;
+  const backPrintColorCountForEstimate = backDesignColorsOverflow
+    ? 4
+    : Math.max(1, Number(backDesignColors) || 0);
   const backNameUnit = backFeatures.name ? 1.0 : 0;
   const backTitleUnit = backFeatures.title ? 0.75 : 0;
   const backDesignUnit = backFeatures.backDesign
-    ? 2 + Math.max(1, backDesignColors) * 1.5
+    ? 2 + backPrintColorCountForEstimate * 1.5
     : 0;
   const pickupOrDelivery = shippingMethod === "delivery" ? 12 : 0;
   const estimateUnitSubtotal =
-    baseUnitPrice + frontPrintUnit + backNameUnit + backTitleUnit + backDesignUnit;
+    baseUnitPrice +
+    frontPrintUnit +
+    backNameUnit +
+    backTitleUnit +
+    backDesignUnit;
   const estimateTotal = estimateUnitSubtotal + pickupOrDelivery;
 
   const fileToDataUrl = (file) =>
@@ -279,11 +569,13 @@ export default function QuickOrder() {
         model: selectedModelDetails?.name || "",
         color: selectedColor,
         frontPlacement,
-        frontColorCount: frontPlacement === "none" ? 0 : frontDesignColors,
+        frontColorCount: frontPlacement === "none" ? 0 : effectiveFrontColorCount,
         backTitle: Boolean(backFeatures.title),
         backName: Boolean(backFeatures.name),
+        backOrganization: Boolean(backFeatures.organization),
+        backOrganizationName: backFeatures.organization ? backOrganizationName.trim() : "",
         backDesign: Boolean(backFeatures.backDesign),
-        backColorCount: backFeatures.backDesign ? backDesignColors : 0,
+        backColorCount: backFeatures.backDesign ? effectiveBackColorCount : 0,
         shippingMethod: shippingMethod === "delivery" ? "Deliver" : "Pick Up",
         deliveryAddress: shippingMethod === "delivery" ? shippingAddress : "",
         attachments,
@@ -298,7 +590,10 @@ export default function QuickOrder() {
       if (!res.ok) {
         throw new Error(data?.error || "Failed to send order");
       }
-      setSendOrderStatus({ state: "sent", message: "Order sent. We'll email you within 48 hours." });
+      setSendOrderStatus({
+        state: "sent",
+        message: "Order sent. We'll email you within 48 hours.",
+      });
     } catch (err) {
       setSendOrderStatus({
         state: "error",
@@ -366,7 +661,9 @@ export default function QuickOrder() {
                   <span className="coming-soon-badge">Coming Soon</span>
                 )}
               </div>
-              <p className="quick-order-panel-description">{option.description}</p>
+              <p className="quick-order-panel-description">
+                {option.description}
+              </p>
             </article>
           ))}
         </section>
@@ -422,7 +719,9 @@ export default function QuickOrder() {
                   : "Select a model to view available colors."}
               </p>
               {selectedColor && (
-                <p className="quick-order-color-selected">Selected: {selectedColor}</p>
+                <p className="quick-order-color-selected">
+                  Selected: {selectedColor}
+                </p>
               )}
             </div>
             {showA4Colors ? (
@@ -454,7 +753,10 @@ export default function QuickOrder() {
               </div>
             ) : (
               <div className="quick-order-color-empty">
-                <p>Select the A4 Cooling Performance Short Sleeve Tee to see color swatches.</p>
+                <p>
+                  Select the A4 Cooling Performance Short Sleeve Tee to see
+                  color swatches.
+                </p>
               </div>
             )}
           </div>
@@ -467,15 +769,15 @@ export default function QuickOrder() {
             type="button"
             className="quick-order-back"
             onClick={() => {
-            if (selectedModel) {
-              setSelectedModel("");
-              setSelectedColor("");
-              setShirtModelAlert("");
-              return;
-            }
-            setPhase("order-type");
-          }}
-        >
+              if (selectedModel) {
+                setSelectedModel("");
+                setSelectedColor("");
+                setShirtModelAlert("");
+                return;
+              }
+              setPhase("order-type");
+            }}
+          >
             {selectedModel ? "Back to Shirt Model" : "Back to Order Types"}
           </button>
           <button
@@ -526,10 +828,10 @@ export default function QuickOrder() {
                 alt={`blank template for ${selectedModelDetails.name} front view`}
               />
               {showFullFront && (
-                <div className="front-placement-highlight full-front" />
+                <div className="placement-highlight full-front" />
               )}
               {showLeftChest && (
-                <div className="front-placement-highlight left-chest" />
+                <div className="placement-highlight left-chest" />
               )}
             </div>
           </div>
@@ -543,7 +845,9 @@ export default function QuickOrder() {
                   name="front-placement"
                   value="full-front"
                   checked={frontPlacement === "full-front"}
-                  onChange={(event) => handleFrontPlacementChange(event.target.value)}
+                  onChange={(event) =>
+                    handleFrontPlacementChange(event.target.value)
+                  }
                 />
                 Full Front
               </label>
@@ -553,7 +857,9 @@ export default function QuickOrder() {
                   name="front-placement"
                   value="left-chest"
                   checked={frontPlacement === "left-chest"}
-                  onChange={(event) => handleFrontPlacementChange(event.target.value)}
+                  onChange={(event) =>
+                    handleFrontPlacementChange(event.target.value)
+                  }
                 />
                 Left Chest
               </label>
@@ -563,14 +869,18 @@ export default function QuickOrder() {
                   name="front-placement"
                   value="none"
                   checked={frontPlacement === "none"}
-                  onChange={(event) => handleFrontPlacementChange(event.target.value)}
+                  onChange={(event) =>
+                    handleFrontPlacementChange(event.target.value)
+                  }
                 />
                 None
               </label>
             </div>
 
             <div
-              className={`quick-order-control-group ${frontPlacement === "none" ? "is-disabled" : ""}`}
+              className={`quick-order-control-group ${frontPlacement === "none" ? "is-disabled" : ""} ${
+                frontFieldAlerts.upload ? "has-alert" : ""
+              }`}
             >
               <label htmlFor="front-design-upload">Upload Front Design</label>
               <input
@@ -588,7 +898,14 @@ export default function QuickOrder() {
                 Upload Front Design
               </label>
               {frontDesignFileName && (
-                <p className="quick-order-upload-name">Uploaded: {frontDesignFileName}</p>
+                <p className="quick-order-upload-name">
+                  Uploaded: {frontDesignFileName}
+                </p>
+              )}
+              {frontFieldAlerts.upload && (
+                <p className="quick-order-field-alert" role="alert">
+                  {frontFieldAlerts.upload}
+                </p>
               )}
               <p className="quick-order-tip">
                 Tip: Use vector art when possible, or at least a 300 DPI raster
@@ -597,25 +914,87 @@ export default function QuickOrder() {
             </div>
 
             <div
-              className={`quick-order-control-group ${frontPlacement === "none" ? "is-disabled" : ""}`}
+              className={`quick-order-control-group ${frontPlacement === "none" ? "is-disabled" : ""} ${
+                frontFieldAlerts.colors ? "has-alert" : ""
+              }`}
             >
-              <label htmlFor="front-design-colors">
-                Number of Design Colors
-              </label>
-              <input
-                id="front-design-colors"
-                type="number"
-                min={frontPlacement === "none" ? "0" : "1"}
-                max="4"
-                step="1"
-                value={frontDesignColors}
-                disabled={frontPlacement === "none"}
-                onChange={(event) => {
-                  const value = Number(event.target.value);
-                  if (Number.isNaN(value)) return;
-                  setFrontDesignColors(Math.min(4, Math.max(1, value)));
-                }}
-              />
+              <div className="quick-order-label-with-tooltip">
+                <label htmlFor="front-design-colors">
+                  Number of Design Colors
+                </label>
+                <span className="quick-order-tooltip-wrap">
+                  <button
+                    type="button"
+                    className="quick-order-tooltip-trigger"
+                    aria-label="About design color count"
+                  >
+                    ?
+                  </button>
+                  <span className="quick-order-tooltip-bubble" role="tooltip">
+                    Count each distinct ink color in the artwork. Each
+                    additional color up to 4 colors raises the price. At 5+
+                    colors, price will not be determined by number of colors,
+                    but by the size of the art.
+                  </span>
+                </span>
+              </div>
+              <div className="quick-order-color-count-row">
+                <input
+                  id="front-design-colors"
+                  type="number"
+                  min={frontPlacement === "none" ? "0" : "1"}
+                  max="4"
+                  step="1"
+                  value={frontDesignColors}
+                  disabled={frontPlacement === "none" || frontDesignColorsOverflow}
+                  onChange={(event) => {
+                    setFrontFieldAlerts((current) => ({
+                      ...current,
+                      colors: "",
+                    }));
+                    if (event.target.value === "") {
+                      setFrontDesignColors("");
+                      return;
+                    }
+                    const value = Number(event.target.value);
+                    if (Number.isNaN(value)) return;
+                    setFrontDesignColors(Math.min(4, Math.max(1, value)));
+                  }}
+                />
+                <label
+                  className={`quick-order-inline-toggle ${
+                    frontPlacement === "none" ? "is-disabled" : ""
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={frontDesignColorsOverflow}
+                    disabled={frontPlacement === "none"}
+                    onChange={(event) => {
+                      const isChecked = event.target.checked;
+                      setFrontDesignColorsOverflow(isChecked);
+                      setFrontFieldAlerts((current) => ({
+                        ...current,
+                        colors: "",
+                      }));
+                      if (isChecked) {
+                        return;
+                      }
+                      if (frontPlacement === "none") {
+                        setFrontDesignColors(0);
+                      } else {
+                        setFrontDesignColors("");
+                      }
+                    }}
+                  />
+                  <span>5+</span>
+                </label>
+              </div>
+              {frontFieldAlerts.colors && (
+                <p className="quick-order-field-alert" role="alert">
+                  {frontFieldAlerts.colors}
+                </p>
+              )}
               <p className="quick-order-tip">
                 Tip: For best price and results, keep most designs at 1-2
                 colors.
@@ -662,13 +1041,35 @@ export default function QuickOrder() {
                 alt="Blank tee back blueprint"
               />
               {backFeatures.title && (
-                <div className="front-placement-highlight back-title" />
+                <div
+                  className="placement-highlight back-title"
+                  style={{ top: getBackTextHighlightTop("title") }}
+                >
+                  <span className="placement-highlight-label">Title</span>
+                </div>
               )}
               {backFeatures.name && (
-                <div className="front-placement-highlight back-name" />
+                <div
+                  className="placement-highlight back-name"
+                  style={{ top: getBackTextHighlightTop("name") }}
+                >
+                  <span className="placement-highlight-label">Name</span>
+                </div>
+              )}
+              {backFeatures.organization && (
+                <div
+                  className="placement-highlight back-organization"
+                  style={{ top: getBackTextHighlightTop("organization") }}
+                >
+                  <span className="placement-highlight-label">
+                    School/Team/Organization
+                  </span>
+                </div>
               )}
               {backFeatures.backDesign && (
-                <div className="front-placement-highlight back-design" />
+                <div className="placement-highlight back-design">
+                  <span className="placement-highlight-label">Back Design</span>
+                </div>
               )}
             </div>
           </div>
@@ -698,6 +1099,14 @@ export default function QuickOrder() {
               <label className="quick-order-option-row">
                 <input
                   type="checkbox"
+                  checked={backFeatures.organization}
+                  onChange={() => handleBackFeatureToggle("organization")}
+                />
+                School/Team/Organization
+              </label>
+              <label className="quick-order-option-row">
+                <input
+                  type="checkbox"
                   checked={backFeatures.backDesign}
                   onChange={() => handleBackFeatureToggle("backDesign")}
                 />
@@ -705,17 +1114,22 @@ export default function QuickOrder() {
               </label>
             </div>
 
-            <div className="quick-order-control-group">
-              <label htmlFor="back-roster-upload">
-                {spreadsheetLabel}
-              </label>
+            <div
+              className={`quick-order-control-group ${
+                backFieldAlerts.spreadsheet ? "has-alert" : ""
+              }`}
+            >
+              <label htmlFor="back-roster-upload">{spreadsheetLabel}</label>
               <input
                 id="back-roster-upload"
                 className="sr-only"
                 type="file"
                 onChange={handleBackSpreadsheetUpload}
               />
-              <label htmlFor="back-roster-upload" className="quick-order-upload-button">
+              <label
+                htmlFor="back-roster-upload"
+                className="quick-order-upload-button"
+              >
                 Upload Spreadsheet
               </label>
               {backSpreadsheetFileName && (
@@ -723,10 +1137,17 @@ export default function QuickOrder() {
                   Uploaded: {backSpreadsheetFileName}
                 </p>
               )}
+              {backFieldAlerts.spreadsheet && (
+                <p className="quick-order-field-alert" role="alert">
+                  {backFieldAlerts.spreadsheet}
+                </p>
+              )}
             </div>
 
             <div className="quick-order-control-group">
-              <p className="quick-order-table-label">Example Spreadsheet Format</p>
+              <p className="quick-order-table-label">
+                Example Spreadsheet Format
+              </p>
               <div className="quick-order-table-wrap">
                 <table className="quick-order-example-table">
                   <thead>
@@ -773,14 +1194,47 @@ export default function QuickOrder() {
               </div>
               {(backFeatures.name || backFeatures.title) && (
                 <p className="quick-order-tip">
-                  Tip: Names and titles are printed exactly as entered in your spreadsheet,
-                  including capitalization, punctuation, and spacing.
+                  Tip: Names and titles are printed exactly as entered in your
+                  spreadsheet, including capitalization, punctuation, and
+                  spacing.
+                </p>
+              )}
+            </div>
+            
+            <div
+              className={`quick-order-control-group ${
+                backFeatures.organization ? "" : "is-disabled"
+              } ${backFieldAlerts.organization ? "has-alert" : ""}`}
+            >
+              <label htmlFor="back-organization-name">
+                School/Team/Organization
+              </label>
+              <input
+                id="back-organization-name"
+                type="text"
+                value={backOrganizationName}
+                placeholder="Enter school, team, or organization name"
+                disabled={!backFeatures.organization}
+                onChange={(event) => {
+                  setBackOrganizationName(event.target.value);
+                  setBackPhaseAlert("");
+                  setBackFieldAlerts((current) => ({
+                    ...current,
+                    organization: "",
+                  }));
+                }}
+              />
+              {backFieldAlerts.organization && (
+                <p className="quick-order-field-alert" role="alert">
+                  {backFieldAlerts.organization}
                 </p>
               )}
             </div>
 
             <div
-              className={`quick-order-control-group ${backFeatures.backDesign ? "" : "is-disabled"}`}
+              className={`quick-order-control-group ${backFeatures.backDesign ? "" : "is-disabled"} ${
+                backFieldAlerts.upload ? "has-alert" : ""
+              }`}
             >
               <label htmlFor="back-design-upload">Upload Back Design</label>
               <input
@@ -791,11 +1245,21 @@ export default function QuickOrder() {
                 disabled={!backFeatures.backDesign}
                 onChange={handleBackDesignUpload}
               />
-              <label htmlFor="back-design-upload" className="quick-order-upload-button">
+              <label
+                htmlFor="back-design-upload"
+                className="quick-order-upload-button"
+              >
                 Upload Back Design
               </label>
               {backDesignFileName && (
-                <p className="quick-order-upload-name">Uploaded: {backDesignFileName}</p>
+                <p className="quick-order-upload-name">
+                  Uploaded: {backDesignFileName}
+                </p>
+              )}
+              {backFieldAlerts.upload && (
+                <p className="quick-order-field-alert" role="alert">
+                  {backFieldAlerts.upload}
+                </p>
               )}
               <p className="quick-order-tip">
                 Tip: Use vector art when possible, or at least a 300 DPI raster
@@ -804,25 +1268,92 @@ export default function QuickOrder() {
             </div>
 
             <div
-              className={`quick-order-control-group ${backFeatures.backDesign ? "" : "is-disabled"}`}
+              className={`quick-order-control-group ${backFeatures.backDesign ? "" : "is-disabled"} ${
+                backFieldAlerts.colors ? "has-alert" : ""
+              }`}
             >
-              <label htmlFor="back-design-colors">Number of Design Colors</label>
-              <input
-                id="back-design-colors"
-                type="number"
-                min={backFeatures.backDesign ? "1" : "0"}
-                max="4"
-                step="1"
-                value={backDesignColors}
-                disabled={!backFeatures.backDesign}
-                onChange={(event) => {
-                  const value = Number(event.target.value);
-                  if (Number.isNaN(value)) return;
-                  setBackDesignColors(Math.min(4, Math.max(1, value)));
-                }}
-              />
+              <div className="quick-order-label-with-tooltip">
+                <label htmlFor="back-design-colors">
+                  Number of Design Colors
+                </label>
+                <span className="quick-order-tooltip-wrap">
+                  <button
+                    type="button"
+                    className="quick-order-tooltip-trigger"
+                    aria-label="About back design color count"
+                  >
+                    ?
+                  </button>
+                  <span className="quick-order-tooltip-bubble" role="tooltip">
+                    Count each distinct ink color in the artwork. Each
+                    additional color up to 4 colors raises the price. At 5+
+                    colors, price will not be determined by number of colors,
+                    but by the size of the art.
+                  </span>
+                </span>
+              </div>
+              <div className="quick-order-color-count-row">
+                <input
+                  id="back-design-colors"
+                  type="number"
+                  min={backFeatures.backDesign ? "1" : "0"}
+                  max="4"
+                  step="1"
+                  value={backDesignColors}
+                  disabled={!backFeatures.backDesign || backDesignColorsOverflow}
+                  onChange={(event) => {
+                    setBackPhaseAlert("");
+                    setBackFieldAlerts((current) => ({
+                      ...current,
+                      colors: "",
+                    }));
+                    if (event.target.value === "") {
+                      setBackDesignColors("");
+                      return;
+                    }
+                    const value = Number(event.target.value);
+                    if (Number.isNaN(value)) return;
+                    setBackDesignColors(Math.min(4, Math.max(1, value)));
+                  }}
+                />
+                <label
+                  className={`quick-order-inline-toggle ${
+                    backFeatures.backDesign ? "" : "is-disabled"
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={backDesignColorsOverflow}
+                    disabled={!backFeatures.backDesign}
+                    onChange={(event) => {
+                      const isChecked = event.target.checked;
+                      setBackDesignColorsOverflow(isChecked);
+                      setBackPhaseAlert("");
+                      setBackFieldAlerts((current) => ({
+                        ...current,
+                        colors: "",
+                      }));
+                      if (isChecked) {
+                        return;
+                      }
+                      if (backFeatures.backDesign) {
+                        setBackDesignColors("");
+                      } else {
+                        setBackDesignColors(0);
+                      }
+                    }}
+                  />
+                  <span>5+</span>
+                </label>
+              </div>
+              {backFieldAlerts.colors && (
+                <p className="quick-order-field-alert" role="alert">
+                  {backFieldAlerts.colors}
+                </p>
+              )}
               <p className="quick-order-tip">
-                Tip: For best price and results, keep most designs at 1-2 colors.
+                Tip: For best price and results, keep most designs at 1-2
+                colors.
               </p>
             </div>
           </div>
@@ -841,15 +1372,23 @@ export default function QuickOrder() {
           <button
             type="button"
             className="quick-order-continue"
-            onClick={() => setPhase("shipping-confirmation")}
+            onClick={handleContinueToShipping}
           >
             Continue to Shipping & Order Confirmation
           </button>
+          {backPhaseAlert && (
+            <p className="quick-order-warning" role="alert">
+              {backPhaseAlert}
+            </p>
+          )}
         </section>
       )}
 
       {phase === "shipping-confirmation" && (
-        <section className="quick-order-shipping-layout" aria-label="Shipping and confirmation">
+        <section
+          className="quick-order-shipping-layout"
+          aria-label="Shipping and confirmation"
+        >
           <div className="quick-order-shipping-card">
             <h2>Shipping & Contact</h2>
             <div className="quick-order-control-group">
@@ -929,10 +1468,14 @@ export default function QuickOrder() {
             </div>
           </div>
 
-          <aside className="quick-order-estimate-card" aria-label="Price estimate">
+          <aside
+            className="quick-order-estimate-card"
+            aria-label="Price estimate"
+          >
             <h2>Price Estimate</h2>
             <p className="quick-order-tip">
-              Estimate is for 1 item plus shipping. Final quote is confirmed after review.
+              Estimate is for 1 item plus shipping. Final quote is confirmed
+              after review.
             </p>
             <div className="quick-order-estimate-lines">
               <div className="quick-order-estimate-row">
@@ -975,7 +1518,8 @@ export default function QuickOrder() {
       {phase === "shipping-confirmation" && (
         <section className="quick-order-shipping-note-float">
           <p className="quick-order-shipping-note">
-            Once you send the order, we will review your order. Expect to receive a breakdown and quote in your email from us within 48 hours.
+            Once you send the order, we will review your order. Expect to
+            receive a breakdown and quote in your email from us within 48 hours.
           </p>
         </section>
       )}
