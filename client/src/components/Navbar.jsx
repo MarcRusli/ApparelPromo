@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router";
 import "./Navbar.css";
 import apLogo from "../assets/apparelpromo-logo.png";
+import { quickLinks } from "./quickLinksData";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -43,24 +44,14 @@ export default function Navbar() {
         className={`nav-mobile-menu ${menuOpen ? "is-open" : ""}`}
       >
         <ul className="nav-mobile-links" onClick={closeMenu}>
-          <li>
-            <Link to="/designer">
-              Create Your Shirt
-              <span className="coming-soon-badge">Coming Soon</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/quote">Quick Quote</Link>
-          </li>
-          <li>
-            <Link to="/screen-print">Screen Print</Link>
-          </li>
-          <li>
-            <Link to="/embroidery">Embroidery</Link>
-          </li>
-          <li>
-            <Link to="/about-us">About</Link>
-          </li>
+          {quickLinks.map(({ to, label, badge }) => (
+            <li key={to}>
+              <Link to={to}>
+                {label}
+                {badge ? <span className="coming-soon-badge">{badge}</span> : null}
+              </Link>
+            </li>
+          ))}
         </ul>
         <address onClick={closeMenu}>
           <a href="mailto:sales.apparelpromo@gmail.com">

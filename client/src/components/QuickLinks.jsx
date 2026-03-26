@@ -1,35 +1,28 @@
 import "./QuickLinks.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router";
+import { quickLinks } from "./quickLinksData";
 
 export default function QuickLinks() {
   return (
     <div className="nav-container subnav-container">
       <nav className="responsive-container subnav">
         <ul className="quicklinks">
-          <li>
-            <Link to="/quick-order">Quick Order</Link>
-          </li>
-          <li>
-            <Link to="/designer">
-              Create Your Shirt
-              <span className="coming-soon-badge">Coming Soon</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/quote">Quick Quote</Link>
-          </li>
-          {/* <li>
-            <Link to="/screen-print">Screen Print</Link>
-          </li>
-          <li>
-            <Link to="/embroidery">Embroidery</Link>
-          </li> */}
-          <li>
-            <Link to="/about-us">About</Link>
-          </li>
+          {quickLinks.map(({ to, label, badge }) => (
+            <li key={to}>
+              <Link to={to}>
+                {label}
+                {badge ? <span className="coming-soon-badge">{badge}</span> : null}
+              </Link>
+            </li>
+          ))}
         </ul>
-        <span><span style={{fontSize: "1.7em"}}><FontAwesomeIcon icon="fa-solid fa-cart-shopping" /></span> Cart <span className="coming-soon-badge">Coming Soon</span></span>
+        <span>
+          <span style={{ fontSize: "1.7em" }}>
+            <FontAwesomeIcon icon="fa-solid fa-cart-shopping" />
+          </span>{" "}
+          Cart <span className="coming-soon-badge">Coming Soon</span>
+        </span>
       </nav>
     </div>
   );
