@@ -54,8 +54,8 @@ export default function Navbar() {
           ))}
         </ul>
         <address onClick={closeMenu}>
-          <a href="mailto:sales.apparelpromo@gmail.com">
-            sales.apparelpromo@gmail.com
+          <a href="mailto:orders@apparelpromo.com">
+            orders@apparelpromo.com
           </a>
           <br />
           <a href="tel:+15104719010">+1 (510) 471-9010</a>

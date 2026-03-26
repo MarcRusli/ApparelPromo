@@ -31,8 +31,8 @@ export default function Footer() {
 
         <address className="footer-column footer-contact">
           <h4>Contact</h4>
-          <a href="mailto:sales.apparelpromo@gmail.com">
-            sales.apparelpromo@gmail.com
+          <a href="mailto:orders@apparelpromo.com">
+            orders@apparelpromo.com
           </a>
           <a href="tel:+15104719010">+1 (510) 471-9010</a>
           <a href="https://maps.app.goo.gl/9Nq5XZajFQ1vYBSt9" target="_blank">
