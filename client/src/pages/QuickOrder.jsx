@@ -946,6 +946,7 @@ export default function QuickOrder() {
                   max="4"
                   step="1"
                   value={frontDesignColors}
+                  placeholder="1"
                   disabled={frontPlacement === "none" || frontDesignColorsOverflow}
                   onChange={(event) => {
                     setFrontFieldAlerts((current) => ({
