@@ -807,11 +807,6 @@
   text-align: left;
 }
 
-.quick-order-shipping-card p {
-  margin: 0;
-  color: #d2deed;
-}
-
 .quick-order-estimate-card {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 16px;

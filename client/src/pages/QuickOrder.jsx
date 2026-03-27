@@ -225,6 +225,11 @@ export default function QuickOrder() {
   });
   const [shippingMethod, setShippingMethod] = useState("delivery");
   const [shippingAddress, setShippingAddress] = useState("");
+  const [shippingFieldAlerts, setShippingFieldAlerts] = useState({
+    deliveryAddress: "",
+    contactName: "",
+    contactEmail: "",
+  });
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
@@ -452,6 +457,12 @@ export default function QuickOrder() {
   const canContinueToFrontDesign = showA4Colors && Boolean(selectedColor);
   const showFullFront = frontPlacement === "full-front";
   const showLeftChest = frontPlacement === "left-chest";
+  const frontDesignRequiresArtwork =
+    frontPlacement === "full-front" || frontPlacement === "left-chest";
+  const canContinueToBackDesign =
+    !frontDesignRequiresArtwork ||
+    (Boolean(frontDesignFileName) &&
+      (frontDesignColorsOverflow || Boolean(frontDesignColors)));
   const activeBackTextFeatures = [
     backFeatures.name ? "name" : null,
     backFeatures.organization ? "organization" : null,
@@ -482,6 +493,16 @@ export default function QuickOrder() {
   if (backFeatures.name) spreadsheetFields.push("Name");
   if (backFeatures.title) spreadsheetFields.push("Title");
   const spreadsheetLabel = `Upload ${spreadsheetFields.join("/")} Spreadsheet`;
+  const canContinueToShipping =
+    Boolean(backSpreadsheetFileName) &&
+    (!backFeatures.organization || Boolean(backOrganizationName.trim())) &&
+    (!backFeatures.backDesign ||
+      (Boolean(backDesignFileName) &&
+        (backDesignColorsOverflow || Boolean(backDesignColors))));
+  const canSendOrder =
+    Boolean(contactName.trim()) &&
+    Boolean(contactEmail.trim()) &&
+    (shippingMethod !== "delivery" || Boolean(shippingAddress.trim()));
 
   const parsePrice = (value) => {
     if (!value) return 0;
@@ -531,10 +552,29 @@ export default function QuickOrder() {
   const handleSendQuickOrder = async () => {
     if (sendOrderStatus.state === "sending") return;
 
-    if (!contactName || !contactEmail) {
+    const nextShippingAlerts = {
+      deliveryAddress:
+        shippingMethod === "delivery" && !shippingAddress.trim()
+          ? "Enter the delivery address before sending the order."
+          : "",
+      contactName: !contactName.trim()
+        ? "Enter the contact name before sending the order."
+        : "",
+      contactEmail: !contactEmail.trim()
+        ? "Enter the email address before sending the order."
+        : "",
+    };
+
+    setShippingFieldAlerts(nextShippingAlerts);
+
+    if (
+      nextShippingAlerts.deliveryAddress ||
+      nextShippingAlerts.contactName ||
+      nextShippingAlerts.contactEmail
+    ) {
       setSendOrderStatus({
         state: "error",
-        message: "Please enter your name and email before sending the order.",
+        message: "Complete the highlighted shipping and contact fields before sending.",
       });
       return;
     }
@@ -1016,7 +1056,9 @@ export default function QuickOrder() {
           </button>
           <button
             type="button"
-            className="quick-order-continue"
+            className={`quick-order-continue ${
+              canContinueToBackDesign ? "" : "is-disabled"
+            }`}
             onClick={handleContinueToBackDesign}
           >
             Continue to Back Design
@@ -1372,7 +1414,9 @@ export default function QuickOrder() {
           </button>
           <button
             type="button"
-            className="quick-order-continue"
+            className={`quick-order-continue ${
+              canContinueToShipping ? "" : "is-disabled"
+            }`}
             onClick={handleContinueToShipping}
           >
             Continue to Shipping & Order Confirmation
@@ -1401,7 +1445,14 @@ export default function QuickOrder() {
                     name="shipping-method"
                     value="delivery"
                     checked={shippingMethod === "delivery"}
-                    onChange={(event) => setShippingMethod(event.target.value)}
+                    onChange={(event) => {
+                      setShippingMethod(event.target.value);
+                      setSendOrderStatus({ state: "idle", message: "" });
+                      setShippingFieldAlerts((current) => ({
+                        ...current,
+                        deliveryAddress: "",
+                      }));
+                    }}
                   />
                   Deliver to your address
                 </label>
@@ -1411,7 +1462,14 @@ export default function QuickOrder() {
                     name="shipping-method"
                     value="pickup"
                     checked={shippingMethod === "pickup"}
-                    onChange={(event) => setShippingMethod(event.target.value)}
+                    onChange={(event) => {
+                      setShippingMethod(event.target.value);
+                      setSendOrderStatus({ state: "idle", message: "" });
+                      setShippingFieldAlerts((current) => ({
+                        ...current,
+                        deliveryAddress: "",
+                      }));
+                    }}
                   />
                   Pick up at our Hayward office
                   <span className="quick-order-free-tip">Free</span>
@@ -1422,39 +1480,83 @@ export default function QuickOrder() {
             <div
               className={`quick-order-control-group ${
                 shippingMethod === "pickup" ? "is-disabled" : ""
-              }`}
+              } ${shippingFieldAlerts.deliveryAddress ? "has-alert" : ""}`}
             >
               <label htmlFor="shipping-address">Delivery Address</label>
               <input
                 id="shipping-address"
                 type="text"
                 value={shippingAddress}
-                onChange={(event) => setShippingAddress(event.target.value)}
+                onChange={(event) => {
+                  setShippingAddress(event.target.value);
+                  setSendOrderStatus({ state: "idle", message: "" });
+                  setShippingFieldAlerts((current) => ({
+                    ...current,
+                    deliveryAddress: "",
+                  }));
+                }}
                 placeholder="Street, City, State, ZIP"
                 disabled={shippingMethod === "pickup"}
               />
+              {shippingFieldAlerts.deliveryAddress && (
+                <p className="quick-order-field-alert" role="alert">
+                  {shippingFieldAlerts.deliveryAddress}
+                </p>
+              )}
             </div>
 
-            <div className="quick-order-control-group">
-              <label htmlFor="contact-name">Name</label>
+            <div
+              className={`quick-order-control-group ${
+                shippingFieldAlerts.contactName ? "has-alert" : ""
+              }`}
+            >
+              <label htmlFor="contact-name">Contact Name</label>
               <input
                 id="contact-name"
                 type="text"
                 value={contactName}
-                onChange={(event) => setContactName(event.target.value)}
+                onChange={(event) => {
+                  setContactName(event.target.value);
+                  setSendOrderStatus({ state: "idle", message: "" });
+                  setShippingFieldAlerts((current) => ({
+                    ...current,
+                    contactName: "",
+                  }));
+                }}
                 placeholder="Your full name"
               />
+              {shippingFieldAlerts.contactName && (
+                <p className="quick-order-field-alert" role="alert">
+                  {shippingFieldAlerts.contactName}
+                </p>
+              )}
             </div>
 
-            <div className="quick-order-control-group">
+            <div
+              className={`quick-order-control-group ${
+                shippingFieldAlerts.contactEmail ? "has-alert" : ""
+              }`}
+            >
               <label htmlFor="contact-email">Email</label>
               <input
                 id="contact-email"
                 type="email"
                 value={contactEmail}
-                onChange={(event) => setContactEmail(event.target.value)}
+                onChange={(event) => {
+                  setContactEmail(event.target.value);
+                  setSendOrderStatus({ state: "idle", message: "" });
+                  setShippingFieldAlerts((current) => ({
+                    ...current,
+                    contactEmail: "",
+                  }));
+                }}
                 placeholder="you@example.com"
               />
+              {shippingFieldAlerts.contactEmail && (
+                <p className="quick-order-field-alert" role="alert">
+                  {shippingFieldAlerts.contactEmail}
+                </p>
+              )}
             </div>
 
             <div className="quick-order-control-group">
@@ -1536,7 +1638,9 @@ export default function QuickOrder() {
           </button>
           <button
             type="button"
-            className="quick-order-continue quick-order-send"
+            className={`quick-order-continue quick-order-send ${
+              canSendOrder ? "" : "is-disabled"
+            }`}
             onClick={handleSendQuickOrder}
           >
             {sendOrderStatus.state === "sending" ? "Sending..." : "Send Order"}
