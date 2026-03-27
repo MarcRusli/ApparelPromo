@@ -343,6 +343,7 @@
   display: grid;
   grid-template-columns: minmax(280px, 1fr) minmax(280px, 0.95fr);
   gap: var(--space-md);
+  min-width: 0;
 }
 
 .quick-order-blueprint-panel,
@@ -351,6 +352,7 @@
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
   padding: var(--space-md);
+  min-width: 0;
 }
 
 .quick-order-blueprint-label {
@@ -932,5 +934,24 @@
 
   .quick-order-estimate-card {
     position: static;
+  }
+
+  .quick-order-tooltip-bubble {
+    left: 0;
+    right: auto;
+    top: calc(100% + 0.5rem);
+    transform: translateY(0);
+    width: min(260px, calc(100vw - 5rem));
+  }
+
+  .quick-order-tooltip-bubble::before {
+    top: -0.35rem;
+    left: 0.8rem;
+    transform: rotate(135deg);
+  }
+
+  .quick-order-tooltip-wrap:hover .quick-order-tooltip-bubble,
+  .quick-order-tooltip-wrap:focus-within .quick-order-tooltip-bubble {
+    transform: translateY(0);
   }
 }
