@@ -527,6 +527,7 @@
 }
 
 .quick-order-tooltip-bubble {
+  display: none;
   position: absolute;
   left: calc(100% + 0.55rem);
   top: 50%;
@@ -540,10 +541,7 @@
   font-size: 0.84rem;
   line-height: 1.4;
   box-shadow: 0 14px 30px rgba(3, 7, 13, 0.35);
-  opacity: 0;
-  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
   z-index: 5;
 }
 
@@ -562,8 +560,7 @@
 
 .quick-order-tooltip-wrap:hover .quick-order-tooltip-bubble,
 .quick-order-tooltip-wrap:focus-within .quick-order-tooltip-bubble {
-  opacity: 1;
-  visibility: visible;
+  display: block;
   transform: translateY(-50%) translateX(0);
 }
 
@@ -937,21 +934,26 @@
   }
 
   .quick-order-tooltip-bubble {
-    left: 0;
+    left: 50%;
     right: auto;
     top: calc(100% + 0.5rem);
-    transform: translateY(0);
-    width: min(260px, calc(100vw - 5rem));
+    transform: translateX(-50%) translateY(0);
+    width: min(280px, calc(100vw - 3rem));
+    max-width: calc(100vw - 3rem);
+    white-space: normal;
+    overflow-wrap: break-word;
   }
 
   .quick-order-tooltip-bubble::before {
     top: -0.35rem;
-    left: 0.8rem;
+    left: 50%;
     transform: rotate(135deg);
+    margin-left: -0.35rem;
   }
 
   .quick-order-tooltip-wrap:hover .quick-order-tooltip-bubble,
   .quick-order-tooltip-wrap:focus-within .quick-order-tooltip-bubble {
-    transform: translateY(0);
+    display: block;
+    transform: translateX(-50%) translateY(0);
   }
 }
