@@ -626,7 +626,7 @@ export default function QuickOrder() {
       : 0;
   const directToFilmPerShirt = 0;
   const namesPerShirt = backFeatures.name ? 6.5 : 0;
-  const organizationPerShirt = 0;
+  const organizationPerShirt = backFeatures.organization ? 3 : 0;
   const perShirtTotal =
     shirtPricePerShirt +
     screenPrintPerShirt +
