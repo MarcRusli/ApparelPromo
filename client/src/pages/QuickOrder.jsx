@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getScreenPrintQuotePerShirt } from "../utils/pricing";
 import "./QuickOrder.css";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
@@ -35,6 +36,14 @@ const SHIRT_MODELS = [
     description:
       "A top choice for many high school teams, this tee offers a unisex fit with performance features such as moisture wicking and sun protection.",
     price: "$7.50",
+  },
+  {
+    id: "OTHER",
+    name: "Other",
+    image: "/blank-tee-front.png",
+    description:
+      "Request a shirt style of your choice and enter the model name and color manually.",
+    price: "Custom quote",
   },
 ];
 
@@ -197,6 +206,12 @@ export default function QuickOrder() {
   const [selectedModel, setSelectedModel] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [shirtModelAlert, setShirtModelAlert] = useState("");
+  const [shirtModelFieldAlerts, setShirtModelFieldAlerts] = useState({
+    modelName: "",
+    color: "",
+  });
+  const [otherModelName, setOtherModelName] = useState("");
+  const [otherModelColor, setOtherModelColor] = useState("");
   const [frontPlacement, setFrontPlacement] = useState("none");
   const [frontDesignColors, setFrontDesignColors] = useState(0);
   const [frontDesignColorsOverflow, setFrontDesignColorsOverflow] =
@@ -210,6 +225,7 @@ export default function QuickOrder() {
   });
   const [backSpreadsheetFile, setBackSpreadsheetFile] = useState(null);
   const [backSpreadsheetFileName, setBackSpreadsheetFileName] = useState("");
+  const [backTotalQuantity, setBackTotalQuantity] = useState("");
   const [backDesignFile, setBackDesignFile] = useState(null);
   const [backDesignFileName, setBackDesignFileName] = useState("");
   const [backDesignColors, setBackDesignColors] = useState(0);
@@ -219,6 +235,7 @@ export default function QuickOrder() {
   const [backPhaseAlert, setBackPhaseAlert] = useState("");
   const [backFieldAlerts, setBackFieldAlerts] = useState({
     spreadsheet: "",
+    quantity: "",
     organization: "",
     upload: "",
     colors: "",
@@ -255,11 +272,17 @@ export default function QuickOrder() {
       setSelectedModel("");
       setSelectedColor("");
       setShirtModelAlert("");
+      setShirtModelFieldAlerts({ modelName: "", color: "" });
+      setOtherModelName("");
+      setOtherModelColor("");
       return;
     }
     setSelectedModel(modelId);
     setSelectedColor("");
     setShirtModelAlert("");
+    setShirtModelFieldAlerts({ modelName: "", color: "" });
+    setOtherModelName("");
+    setOtherModelColor("");
     setFrontPlacement("none");
     setFrontDesignColors(0);
     setFrontDesignColorsOverflow(false);
@@ -269,14 +292,26 @@ export default function QuickOrder() {
     setFrontFieldAlerts({ upload: "", colors: "" });
     setBackSpreadsheetFile(null);
     setBackSpreadsheetFileName("");
+    setBackTotalQuantity("");
     setBackDesignFile(null);
     setBackDesignFileName("");
     setBackDesignColors(0);
     setBackDesignColorsOverflow(false);
     setBackOrganizationName("");
     setBackPhaseAlert("");
-    setBackFieldAlerts({ spreadsheet: "", organization: "", upload: "", colors: "" });
-    setBackFeatures({ name: false, title: false, organization: false, backDesign: false });
+    setBackFieldAlerts({
+      spreadsheet: "",
+      quantity: "",
+      organization: "",
+      upload: "",
+      colors: "",
+    });
+    setBackFeatures({
+      name: false,
+      title: false,
+      organization: false,
+      backDesign: false,
+    });
   };
 
   const handleFrontPlacementChange = (value) => {
@@ -341,6 +376,7 @@ export default function QuickOrder() {
           setBackPhaseAlert("");
           setBackFieldAlerts({
             spreadsheet: "",
+            quantity: "",
             organization: "",
             upload: "",
             colors: "",
@@ -353,6 +389,7 @@ export default function QuickOrder() {
           setBackPhaseAlert("");
           setBackFieldAlerts({
             spreadsheet: "",
+            quantity: "",
             organization: "",
             upload: "",
             colors: "",
@@ -384,6 +421,7 @@ export default function QuickOrder() {
     setBackFieldAlerts((current) => ({
       ...current,
       spreadsheet: "",
+      quantity: "",
     }));
   };
 
@@ -407,6 +445,10 @@ export default function QuickOrder() {
       spreadsheet: !backSpreadsheetFileName
         ? "Upload the sizing spreadsheet before continuing."
         : "",
+      quantity:
+        !backTotalQuantity || Number(backTotalQuantity) < 1
+          ? "Enter the total quantity of shirts to be ordered."
+          : "",
       organization:
         backFeatures.organization && !backOrganizationName.trim()
           ? "Enter the school, team, or organization name."
@@ -416,7 +458,9 @@ export default function QuickOrder() {
           ? "Upload a back design before continuing."
           : "",
       colors:
-        backFeatures.backDesign && !backDesignColorsOverflow && !backDesignColors
+        backFeatures.backDesign &&
+        !backDesignColorsOverflow &&
+        !backDesignColors
           ? "Enter the number of design colors or select 5+."
           : "",
     };
@@ -425,6 +469,7 @@ export default function QuickOrder() {
 
     if (
       nextFieldAlerts.spreadsheet ||
+      nextFieldAlerts.quantity ||
       nextFieldAlerts.organization ||
       nextFieldAlerts.upload ||
       nextFieldAlerts.colors
@@ -436,7 +481,13 @@ export default function QuickOrder() {
     }
 
     setBackPhaseAlert("");
-    setBackFieldAlerts({ spreadsheet: "", organization: "", upload: "", colors: "" });
+    setBackFieldAlerts({
+      spreadsheet: "",
+      quantity: "",
+      organization: "",
+      upload: "",
+      colors: "",
+    });
     setPhase("shipping-confirmation");
   };
 
@@ -446,6 +497,13 @@ export default function QuickOrder() {
   const selectedA4Color = A4_COLOR_SWATCHES.find(
     (swatch) => swatch.name === selectedColor,
   );
+  const showOtherModelFields = selectedModel === "OTHER";
+  const selectedModelName = showOtherModelFields
+    ? otherModelName.trim()
+    : selectedModelDetails?.name || "";
+  const selectedShirtColor = showOtherModelFields
+    ? otherModelColor.trim()
+    : selectedColor;
   const getModelImage = (model) => {
     if (model.id === "A4N3142" && selectedA4Color?.image) {
       return selectedA4Color.image;
@@ -454,7 +512,11 @@ export default function QuickOrder() {
   };
   const showColorPanel = phase === "shirt-model" && Boolean(selectedModel);
   const showA4Colors = selectedModel === "A4N3142";
-  const canContinueToFrontDesign = showA4Colors && Boolean(selectedColor);
+  const canContinueToFrontDesign = showA4Colors
+    ? Boolean(selectedColor)
+    : showOtherModelFields &&
+      Boolean(otherModelName.trim()) &&
+      Boolean(otherModelColor.trim());
   const showFullFront = frontPlacement === "full-front";
   const showLeftChest = frontPlacement === "left-chest";
   const frontDesignRequiresArtwork =
@@ -471,11 +533,19 @@ export default function QuickOrder() {
   const getBackTextHighlightTop = (feature) => {
     if (activeBackTextFeatures.length === 1) return "21%";
     if (activeBackTextFeatures.length === 2) {
-      if (backFeatures.title && backFeatures.name && !backFeatures.organization) {
+      if (
+        backFeatures.title &&
+        backFeatures.name &&
+        !backFeatures.organization
+      ) {
         if (feature === "title") return "17%";
         if (feature === "name") return "25%";
       }
-      if (backFeatures.title && !backFeatures.name && backFeatures.organization) {
+      if (
+        backFeatures.title &&
+        !backFeatures.name &&
+        backFeatures.organization
+      ) {
         if (feature === "title") return "17%";
         if (feature === "organization") return "25%";
       }
@@ -495,6 +565,8 @@ export default function QuickOrder() {
   const spreadsheetLabel = `Upload ${spreadsheetFields.join("/")} Spreadsheet`;
   const canContinueToShipping =
     Boolean(backSpreadsheetFileName) &&
+    Boolean(backTotalQuantity) &&
+    Number(backTotalQuantity) > 0 &&
     (!backFeatures.organization || Boolean(backOrganizationName.trim())) &&
     (!backFeatures.backDesign ||
       (Boolean(backDesignFileName) &&
@@ -510,36 +582,60 @@ export default function QuickOrder() {
     return Number.isFinite(num) ? num : 0;
   };
 
-  const baseUnitPrice = selectedModelDetails
-    ? parsePrice(selectedModelDetails.price)
-    : 0;
   const effectiveFrontColorCount = frontDesignColorsOverflow
     ? "5+"
     : frontDesignColors;
-  const frontPrintColorCountForEstimate = frontDesignColorsOverflow
-    ? 4
-    : Math.max(1, Number(frontDesignColors) || 0);
-  const frontPrintUnit =
-    frontPlacement === "none"
+  const effectiveBackColorCount = backDesignColorsOverflow
+    ? "5+"
+    : backDesignColors;
+  const selectedModelPrice = selectedModelDetails?.price || "";
+  const isCustomModelQuote = selectedModelPrice === "Custom quote";
+  const estimatePayload = {
+    model: selectedModelName,
+    frontPlacement,
+    frontColorCount: frontPlacement === "none" ? 0 : effectiveFrontColorCount,
+    backDesign: Boolean(backFeatures.backDesign),
+    backColorCount: backFeatures.backDesign ? effectiveBackColorCount : 0,
+    totalQuantity: Number(backTotalQuantity) || 0,
+  };
+  const estimatedFrontColors =
+    estimatePayload.frontPlacement === "none"
       ? 0
-      : 2 + frontPrintColorCountForEstimate * 1.5;
-  const effectiveBackColorCount = backDesignColorsOverflow ? "5+" : backDesignColors;
-  const backPrintColorCountForEstimate = backDesignColorsOverflow
-    ? 4
-    : Math.max(1, Number(backDesignColors) || 0);
-  const backNameUnit = backFeatures.name ? 1.0 : 0;
-  const backTitleUnit = backFeatures.title ? 0.75 : 0;
-  const backDesignUnit = backFeatures.backDesign
-    ? 2 + backPrintColorCountForEstimate * 1.5
-    : 0;
-  const pickupOrDelivery = shippingMethod === "delivery" ? 12 : 0;
-  const estimateUnitSubtotal =
-    baseUnitPrice +
-    frontPrintUnit +
-    backNameUnit +
-    backTitleUnit +
-    backDesignUnit;
-  const estimateTotal = estimateUnitSubtotal + pickupOrDelivery;
+      : Number.isInteger(Number(estimatePayload.frontColorCount)) &&
+          Number(estimatePayload.frontColorCount) >= 1 &&
+          Number(estimatePayload.frontColorCount) <= 4
+        ? Number(estimatePayload.frontColorCount)
+        : 0;
+  const estimatedBackColors =
+    estimatePayload.backDesign &&
+    Number.isInteger(Number(estimatePayload.backColorCount)) &&
+    Number(estimatePayload.backColorCount) >= 1 &&
+    Number(estimatePayload.backColorCount) <= 4
+      ? Number(estimatePayload.backColorCount)
+      : 0;
+  const estimatedQuantity = estimatePayload.totalQuantity;
+  const shirtPricePerShirt = parsePrice(selectedModelPrice);
+  const screenPrintPerShirt =
+    estimatedQuantity > 0
+      ? getScreenPrintQuotePerShirt(
+          0,
+          estimatedQuantity,
+          estimatedFrontColors,
+          estimatedBackColors,
+        )
+      : 0;
+  const directToFilmPerShirt = 0;
+  const namesPerShirt = backFeatures.name ? 6.5 : 0;
+  const organizationPerShirt = 0;
+  const perShirtTotal =
+    shirtPricePerShirt +
+    screenPrintPerShirt +
+    directToFilmPerShirt +
+    namesPerShirt +
+    organizationPerShirt;
+  const orderSubtotal = perShirtTotal * estimatedQuantity;
+  const shippingFee = shippingMethod === "delivery" ? 12 : 0;
+  const estimateTotal = orderSubtotal + shippingFee;
 
   const fileToDataUrl = (file) =>
     new Promise((resolve, reject) => {
@@ -574,7 +670,8 @@ export default function QuickOrder() {
     ) {
       setSendOrderStatus({
         state: "error",
-        message: "Complete the highlighted shipping and contact fields before sending.",
+        message:
+          "Complete the highlighted shipping and contact fields before sending.",
       });
       return;
     }
@@ -606,14 +703,18 @@ export default function QuickOrder() {
         contactName,
         contactEmail,
         contactPhone,
-        model: selectedModelDetails?.name || "",
-        color: selectedColor,
+        model: selectedModelName,
+        color: selectedShirtColor,
         frontPlacement,
-        frontColorCount: frontPlacement === "none" ? 0 : effectiveFrontColorCount,
+        frontColorCount:
+          frontPlacement === "none" ? 0 : effectiveFrontColorCount,
         backTitle: Boolean(backFeatures.title),
         backName: Boolean(backFeatures.name),
+        totalQuantity: Number(backTotalQuantity) || 0,
         backOrganization: Boolean(backFeatures.organization),
-        backOrganizationName: backFeatures.organization ? backOrganizationName.trim() : "",
+        backOrganizationName: backFeatures.organization
+          ? backOrganizationName.trim()
+          : "",
         backDesign: Boolean(backFeatures.backDesign),
         backColorCount: backFeatures.backDesign ? effectiveBackColorCount : 0,
         shippingMethod: shippingMethod === "delivery" ? "Deliver" : "Pick Up",
@@ -741,9 +842,11 @@ export default function QuickOrder() {
                     loading="lazy"
                   />
                 </div>
-                <h2>{model.name}</h2>
-                <p>{model.description}</p>
-                <p className="quick-order-model-price">{model.price}</p>
+                <div className="quick-order-model-copy">
+                  <h2>{model.name}</h2>
+                  <p>{model.description}</p>
+                  <p className="quick-order-model-price">{model.price}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -752,17 +855,18 @@ export default function QuickOrder() {
             aria-live="polite"
           >
             <div className="quick-order-color-panel-header">
-              <h2>Choose Shirt Color</h2>
+              <h2>
+                {showOtherModelFields
+                  ? "Enter Shirt Details"
+                  : "Choose Shirt Color"}
+              </h2>
               <p>
-                {selectedModelDetails
-                  ? `Colors available for ${selectedModelDetails.name}.`
-                  : "Select a model to view available colors."}
+                {showOtherModelFields
+                  ? "Tell us which shirt model and color you want quoted."
+                  : selectedModelDetails
+                    ? `Colors available for ${selectedModelDetails.name}.`
+                    : "Select a model to view available colors."}
               </p>
-              {selectedColor && (
-                <p className="quick-order-color-selected">
-                  Selected: {selectedColor}
-                </p>
-              )}
             </div>
             {showA4Colors ? (
               <div className="quick-order-color-grid" role="list">
@@ -791,6 +895,62 @@ export default function QuickOrder() {
                   </button>
                 ))}
               </div>
+            ) : showOtherModelFields ? (
+              <div className="quick-order-color-form">
+                <div
+                  className={`quick-order-control-group ${
+                    shirtModelFieldAlerts.modelName ? "has-alert" : ""
+                  }`}
+                >
+                  <label htmlFor="other-model-name">Model Name</label>
+                  <input
+                    id="other-model-name"
+                    type="text"
+                    value={otherModelName}
+                    placeholder="Example: Bella + Canvas 3001"
+                    onChange={(event) => {
+                      setOtherModelName(event.target.value);
+                      setShirtModelAlert("");
+                      setShirtModelFieldAlerts((current) => ({
+                        ...current,
+                        modelName: "",
+                      }));
+                    }}
+                  />
+                  {shirtModelFieldAlerts.modelName && (
+                    <p className="quick-order-field-alert" role="alert">
+                      {shirtModelFieldAlerts.modelName}
+                    </p>
+                  )}
+                </div>
+
+                <div
+                  className={`quick-order-control-group ${
+                    shirtModelFieldAlerts.color ? "has-alert" : ""
+                  }`}
+                >
+                  <label htmlFor="other-model-color">Color</label>
+                  <input
+                    id="other-model-color"
+                    type="text"
+                    value={otherModelColor}
+                    placeholder="Example: Heather Navy"
+                    onChange={(event) => {
+                      setOtherModelColor(event.target.value);
+                      setShirtModelAlert("");
+                      setShirtModelFieldAlerts((current) => ({
+                        ...current,
+                        color: "",
+                      }));
+                    }}
+                  />
+                  {shirtModelFieldAlerts.color && (
+                    <p className="quick-order-field-alert" role="alert">
+                      {shirtModelFieldAlerts.color}
+                    </p>
+                  )}
+                </div>
+              </div>
             ) : (
               <div className="quick-order-color-empty">
                 <p>
@@ -813,6 +973,9 @@ export default function QuickOrder() {
                 setSelectedModel("");
                 setSelectedColor("");
                 setShirtModelAlert("");
+                setShirtModelFieldAlerts({ modelName: "", color: "" });
+                setOtherModelName("");
+                setOtherModelColor("");
                 return;
               }
               setPhase("order-type");
@@ -830,6 +993,27 @@ export default function QuickOrder() {
                 setShirtModelAlert("Select a shirt model to continue.");
                 return;
               }
+              if (showOtherModelFields) {
+                const nextFieldAlerts = {
+                  modelName: otherModelName.trim()
+                    ? ""
+                    : "Enter the shirt model name before continuing.",
+                  color: otherModelColor.trim()
+                    ? ""
+                    : "Enter the shirt color before continuing.",
+                };
+                setShirtModelFieldAlerts(nextFieldAlerts);
+                if (nextFieldAlerts.modelName || nextFieldAlerts.color) {
+                  setShirtModelAlert(
+                    "Complete the highlighted shirt details before continuing.",
+                  );
+                  return;
+                }
+                setShirtModelFieldAlerts({ modelName: "", color: "" });
+                setShirtModelAlert("");
+                setPhase("front-design");
+                return;
+              }
               if (!showA4Colors) {
                 setShirtModelAlert(
                   "Color selection is currently available for the A4 Cooling Performance Short Sleeve Tee. Select that model to continue.",
@@ -842,6 +1026,7 @@ export default function QuickOrder() {
                 );
                 return;
               }
+              setShirtModelFieldAlerts({ modelName: "", color: "" });
               setPhase("front-design");
             }}
           >
@@ -855,7 +1040,7 @@ export default function QuickOrder() {
         </section>
       )}
 
-      {phase === "front-design" && selectedModelDetails && (
+      {phase === "front-design" && selectedModelName && (
         <section
           className="quick-order-front-design"
           aria-label="Front design setup"
@@ -865,7 +1050,7 @@ export default function QuickOrder() {
               <img
                 className="quick-order-blueprint-image"
                 src="/blank-tee-front.png"
-                alt={`blank template for ${selectedModelDetails.name} front view`}
+                alt={`blank template for ${selectedModelName} front view`}
               />
               {showFullFront && (
                 <div className="placement-highlight full-front" />
@@ -987,7 +1172,9 @@ export default function QuickOrder() {
                   step="1"
                   value={frontDesignColors}
                   placeholder="1"
-                  disabled={frontPlacement === "none" || frontDesignColorsOverflow}
+                  disabled={
+                    frontPlacement === "none" || frontDesignColorsOverflow
+                  }
                   onChange={(event) => {
                     setFrontFieldAlerts((current) => ({
                       ...current,
@@ -1157,34 +1344,76 @@ export default function QuickOrder() {
               </label>
             </div>
 
-            <div
-              className={`quick-order-control-group ${
-                backFieldAlerts.spreadsheet ? "has-alert" : ""
-              }`}
-            >
-              <label htmlFor="back-roster-upload">{spreadsheetLabel}</label>
-              <input
-                id="back-roster-upload"
-                className="sr-only"
-                type="file"
-                onChange={handleBackSpreadsheetUpload}
-              />
-              <label
-                htmlFor="back-roster-upload"
-                className="quick-order-upload-button"
+            <div className="quick-order-upload-row">
+              <div
+                className={`quick-order-control-group quick-order-inline-group ${
+                  backFieldAlerts.spreadsheet ? "has-alert" : ""
+                }`}
               >
-                Upload Spreadsheet
-              </label>
-              {backSpreadsheetFileName && (
-                <p className="quick-order-upload-name">
-                  Uploaded: {backSpreadsheetFileName}
-                </p>
-              )}
-              {backFieldAlerts.spreadsheet && (
-                <p className="quick-order-field-alert" role="alert">
-                  {backFieldAlerts.spreadsheet}
-                </p>
-              )}
+                <label htmlFor="back-roster-upload">{spreadsheetLabel}</label>
+                <input
+                  id="back-roster-upload"
+                  className="sr-only"
+                  type="file"
+                  onChange={handleBackSpreadsheetUpload}
+                />
+                <label
+                  htmlFor="back-roster-upload"
+                  className="quick-order-upload-button"
+                >
+                  Upload Spreadsheet
+                </label>
+                {backSpreadsheetFileName && (
+                  <p className="quick-order-upload-name">
+                    Uploaded: {backSpreadsheetFileName}
+                  </p>
+                )}
+                {backFieldAlerts.spreadsheet && (
+                  <p className="quick-order-field-alert" role="alert">
+                    {backFieldAlerts.spreadsheet}
+                  </p>
+                )}
+              </div>
+              <div
+                className={`quick-order-control-group quick-order-inline-input ${
+                  backFieldAlerts.quantity ? "has-alert" : ""
+                }`}
+              >
+                <label htmlFor="back-total-quantity">
+                  Total Shirt Quantity
+                </label>
+                <input
+                  id="back-total-quantity"
+                  type="number"
+                  min="1"
+                  step="1"
+                  inputMode="numeric"
+                  value={backTotalQuantity}
+                  placeholder="0"
+                  onChange={(event) => {
+                    const nextValue = event.target.value;
+                    if (nextValue === "") {
+                      setBackTotalQuantity("");
+                    } else {
+                      const parsedValue = Number(nextValue);
+                      if (Number.isNaN(parsedValue)) return;
+                      setBackTotalQuantity(
+                        String(Math.max(1, Math.floor(parsedValue))),
+                      );
+                    }
+                    setBackPhaseAlert("");
+                    setBackFieldAlerts((current) => ({
+                      ...current,
+                      quantity: "",
+                    }));
+                  }}
+                />
+                {backFieldAlerts.quantity && (
+                  <p className="quick-order-field-alert" role="alert">
+                    {backFieldAlerts.quantity}
+                  </p>
+                )}
+              </div>
             </div>
 
             <div className="quick-order-control-group">
@@ -1243,7 +1472,7 @@ export default function QuickOrder() {
                 </p>
               )}
             </div>
-            
+
             <div
               className={`quick-order-control-group ${
                 backFeatures.organization ? "" : "is-disabled"
@@ -1343,7 +1572,9 @@ export default function QuickOrder() {
                   max="4"
                   step="1"
                   value={backDesignColors}
-                  disabled={!backFeatures.backDesign || backDesignColorsOverflow}
+                  disabled={
+                    !backFeatures.backDesign || backDesignColorsOverflow
+                  }
                   onChange={(event) => {
                     setBackPhaseAlert("");
                     setBackFieldAlerts((current) => ({
@@ -1577,41 +1808,71 @@ export default function QuickOrder() {
           >
             <h2>Price Estimate</h2>
             <p className="quick-order-tip">
-              Estimate is for 1 item plus shipping. Final quote is confirmed
-              after review.
+              Estimate uses the current screen print quote formula. Final quote
+              is confirmed after review.
             </p>
             <div className="quick-order-estimate-lines">
+              <p className="quick-order-estimate-section-title">Per Shirt</p>
               <div className="quick-order-estimate-row">
-                <span>Base shirt</span>
-                <span>${baseUnitPrice.toFixed(2)}</span>
+                <span>{selectedModelName || "Shirt model"}</span>
+                <span>
+                  {isCustomModelQuote
+                    ? selectedModelPrice
+                    : `$${shirtPricePerShirt.toFixed(2)}`}
+                </span>
               </div>
               <div className="quick-order-estimate-row">
-                <span>Color</span>
-                <span>{selectedColor || "—"}</span>
+                <span>Screen print</span>
+                <span>${screenPrintPerShirt.toFixed(2)}</span>
               </div>
               <div className="quick-order-estimate-row">
-                <span>Front print</span>
-                <span>${frontPrintUnit.toFixed(2)}</span>
+                <span>Direct to film</span>
+                <span>${directToFilmPerShirt.toFixed(2)}</span>
               </div>
               <div className="quick-order-estimate-row">
-                <span>Back name</span>
-                <span>${backNameUnit.toFixed(2)}</span>
+                <span>Name</span>
+                <span>${namesPerShirt.toFixed(2)}</span>
               </div>
               <div className="quick-order-estimate-row">
-                <span>Back title</span>
-                <span>${backTitleUnit.toFixed(2)}</span>
-              </div>
-              <div className="quick-order-estimate-row">
-                <span>Back design</span>
-                <span>${backDesignUnit.toFixed(2)}</span>
-              </div>
-              <div className="quick-order-estimate-row">
-                <span>Shipping</span>
-                <span>${pickupOrDelivery.toFixed(2)}</span>
+                <span>School/Org</span>
+                <span>${organizationPerShirt.toFixed(2)}</span>
               </div>
               <div className="quick-order-estimate-total">
+                <span>Per-shirt total</span>
+                <span>
+                  {isCustomModelQuote
+                    ? "Custom quote"
+                    : `$${perShirtTotal.toFixed(2)}`}
+                </span>
+              </div>
+            </div>
+            <div className="quick-order-estimate-lines">
+              <p className="quick-order-estimate-section-title">Order Total</p>
+              <div className="quick-order-estimate-row">
+                <span>
+                  {isCustomModelQuote
+                    ? `${selectedModelName || "Per-shirt total"} x ${estimatedQuantity || 0}`
+                    : `$${perShirtTotal.toFixed(2)} x ${estimatedQuantity || 0}`}
+                </span>
+                <span>
+                  {isCustomModelQuote
+                    ? "Custom quote"
+                    : `$${orderSubtotal.toFixed(2)}`}
+                </span>
+              </div>
+              {shippingMethod === "delivery" && (
+                <div className="quick-order-estimate-row">
+                  <span>Shipping</span>
+                  <span>${shippingFee.toFixed(2)}</span>
+                </div>
+              )}
+              <div className="quick-order-estimate-total">
                 <span>Estimated total</span>
-                <span>${estimateTotal.toFixed(2)}</span>
+                <span>
+                  {isCustomModelQuote
+                    ? "Custom quote"
+                    : `$${estimateTotal.toFixed(2)}`}
+                </span>
               </div>
             </div>
           </aside>

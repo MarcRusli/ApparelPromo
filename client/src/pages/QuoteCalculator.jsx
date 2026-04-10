@@ -1,33 +1,6 @@
 import { useState } from "react";
 import "./QuoteCalculator.css";
-
-function roundToNearestFiveCents(amount) {
-  return Math.round(amount * 20) / 20;
-}
-
-function getQuote(blankCost, quantity, frontColors, backColors) {
-  const A = 79.7022
-  const B = 4.2413
-  const C = 0.0000
-  const D = 1.7353
-  const E = 0.8655
-  const L = 1.0000
-  const K = 0.0000
-
-  let costF = 0
-  let costB = 0
-  if (frontColors > 0) {
-    costF = D + E * (frontColors - 1)
-  }
-  if (backColors > 0) {
-    costB = D + E * (backColors - 1)
-  }
-
-  let basePrice = blankCost + (A + B * (frontColors + backColors)) / quantity + C + costF + costB
-  let discount = L + (1 - L) * Math.exp(-K * quantity)
-
-  return roundToNearestFiveCents(basePrice * discount);
-}
+import { getScreenPrintQuotePerShirt } from "../utils/pricing";
 
 export default function QuoteCalculator() {
   const [blankCost, setBlankCost] = useState("");
@@ -52,7 +25,7 @@ export default function QuoteCalculator() {
     }
 
     setFormError("");
-    const result = getQuote(
+    const result = getScreenPrintQuotePerShirt(
       Number(blankCost),
       Number(quantity),
       Number(frontColors),

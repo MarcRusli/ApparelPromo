@@ -146,7 +146,7 @@
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
   display: grid;
-  gap: 0.75rem;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
   transition:
     transform 0.45s ease,
@@ -177,14 +177,22 @@
   outline-offset: 2px;
 }
 
+.quick-order-model-copy {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.75rem;
+  padding: var(--space-md);
+  height: 100%;
+}
+
 .quick-order-model-panel h2 {
-  margin: 0 var(--space-md);
+  margin: 0;
   text-align: left;
   font-size: 1.15rem;
 }
 
 .quick-order-model-panel p {
-  margin: 0 var(--space-md);
+  margin: 0;
   color: #dce4ee;
 }
 
@@ -195,7 +203,6 @@
 
 .quick-order-model-panel {
   margin-top: 0.25rem;
-  padding-bottom: var(--space-md);
 }
 
 .quick-order-model-panel.is-selected {
@@ -279,6 +286,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 0.65rem;
+}
+
+.quick-order-color-form {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.85rem;
 }
 
 .quick-order-color-card {
@@ -565,7 +578,11 @@
 }
 
 .quick-order-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: fit-content;
+  min-height: 40px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   background: transparent;
@@ -580,8 +597,32 @@
   color: var(--ap-orange);
 }
 
+.quick-order-upload-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.quick-order-inline-group {
+  min-width: min(100%, 320px);
+  align-content: start;
+}
+
+.quick-order-inline-input {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+.quick-order-inline-input.has-alert input {
+  border-color: rgba(248, 152, 29, 0.75);
+  box-shadow: 0 0 0 1px rgba(248, 152, 29, 0.22);
+}
+
 .quick-order-control-group input[type="number"] {
   max-width: 120px;
+  min-height: 40px;
   padding: 0.5rem 0.6rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -830,6 +871,15 @@
   padding-top: 0.7rem;
 }
 
+.quick-order-estimate-section-title {
+  margin: 0;
+  color: #f4f5f6;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .quick-order-estimate-row {
   display: flex;
   justify-content: space-between;
@@ -922,6 +972,10 @@
 
   .quick-order-shipping-layout {
     grid-template-columns: 1fr;
+  }
+
+  .quick-order-upload-row {
+    align-items: stretch;
   }
 
   .quick-order-estimate-card {
