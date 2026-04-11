@@ -10,6 +10,7 @@
 .quick-order-hero {
   display: grid;
   gap: 0.5rem;
+  scroll-margin-top: 5.5rem;
 }
 
 .quick-order-eyebrow {

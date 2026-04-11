@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getScreenPrintQuotePerShirt } from "../utils/pricing";
 import "./QuickOrder.css";
 
@@ -201,6 +201,8 @@ const A4_COLOR_SWATCHES = [
 ];
 
 export default function QuickOrder() {
+  const heroRef = useRef(null);
+  const hasMountedRef = useRef(false);
   const [phase, setPhase] = useState("order-type");
   const [selectedOrderType, setSelectedOrderType] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
@@ -743,9 +745,25 @@ export default function QuickOrder() {
     }
   };
 
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
+    const frameId = window.requestAnimationFrame(() => {
+      heroRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [phase]);
+
   return (
     <main className="quick-order-page">
-      <section className="quick-order-hero">
+      <section ref={heroRef} className="quick-order-hero">
         <p className="quick-order-eyebrow">Quick Order</p>
         <h1>
           {phase === "order-type"
