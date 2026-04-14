@@ -487,6 +487,15 @@
   font-weight: 600;
 }
 
+.quick-order-option-row.is-disabled {
+  color: rgba(244, 245, 246, 0.48);
+  cursor: not-allowed;
+}
+
+.quick-order-option-row.is-disabled input {
+  cursor: not-allowed;
+}
+
 .quick-order-control-group {
   display: grid;
   gap: 0.5rem;

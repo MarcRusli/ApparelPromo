@@ -38,6 +38,14 @@ const SHIRT_MODELS = [
     price: "$7.50",
   },
   {
+    id: "LS14003",
+    name: "L7 Premium Full Zip Hoodie",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-True-Royal-Front.jpg",
+    description:
+      "A premium full zip hoodie option for badminton teams that need a heavier layer for travel, warmups, and cooler weather.",
+    price: "Custom quote",
+  },
+  {
     id: "OTHER",
     name: "Other",
     image: "/blank-tee-front.png",
@@ -51,152 +59,206 @@ const A4_COLOR_SWATCHES = [
   {
     name: "White",
     hex: "#FFFFFF",
-    pms: "White",
     image: "/a4-tees/a4-white.jpg",
   },
   {
     name: "Silver",
     hex: "#A2AAAD",
-    pms: "429C",
     image: "/a4-tees/a4-silver.jpg",
   },
   {
     name: "Graphite",
     hex: "#53565A",
-    pms: "7540C",
     image: "/a4-tees/a4-graphite.jpg",
   },
   {
     name: "Black",
     hex: "#2C2C2C",
-    pms: "Black C",
     image: "/a4-tees/a4-black.jpg",
   },
   {
     name: "Light Blue",
     hex: "#ADD8E6",
-    pms: "644C",
     image: "/a4-tees/a4-light-blue.jpg",
   },
   {
     name: "Pastel Blue",
     hex: "#B0C4DE",
-    pms: "543C",
     image: "/a4-tees/a4-pastel-blue.jpg",
   },
   {
     name: "Electric Blue",
     hex: "#0072CE",
-    pms: "2147C",
     image: "/a4-tees/a4-electric-blue.jpg",
   },
   {
     name: "Royal",
     hex: "#0047AB",
-    pms: "7687C",
     image: "/a4-tees/a4-royal.jpg",
   },
-  { name: "Navy", hex: "#000080", pms: "533C", image: "/a4-tees/a4-navy.jpg" },
+  { name: "Navy", hex: "#000080", image: "/a4-tees/a4-navy.jpg" },
   {
     name: "Pastel Mint",
     hex: "#B2E2E2",
-    pms: "344C",
     image: "/a4-tees/a4-pastel-mint.jpg",
   },
-  { name: "Teal", hex: "#008080", pms: "322C", image: "/a4-tees/a4-teal.jpg" },
-  { name: "Lime", hex: "#32CD32", pms: "375C", image: "/a4-tees/a4-lime.jpg" },
+  { name: "Teal", hex: "#008080", image: "/a4-tees/a4-teal.jpg" },
+  { name: "Lime", hex: "#32CD32", image: "/a4-tees/a4-lime.jpg" },
   {
     name: "Kelly",
     hex: "#009A44",
-    pms: "341C",
     image: "/a4-tees/a4-kelly.jpg",
   },
   {
     name: "Forest",
     hex: "#013220",
-    pms: "5535C",
     image: "/a4-tees/a4-forest.jpg",
   },
   {
     name: "Military Green",
     hex: "#4B5320",
-    pms: "7771C",
     image: "/a4-tees/a4-military-green.jpg",
   },
   {
     name: "Olive",
     hex: "#808000",
-    pms: "5743C",
     image: "/a4-tees/a4-olive.jpg",
   },
-  { name: "Pink", hex: "#FFC0CB", pms: "189C", image: "/a4-tees/a4-pink.jpg" },
+  { name: "Pink", hex: "#FFC0CB", image: "/a4-tees/a4-pink.jpg" },
   {
     name: "Coral",
     hex: "#FF7F50",
-    pms: "171C",
     image: "/a4-tees/a4-coral.jpg",
   },
   {
     name: "Scarlet",
     hex: "#CE1126",
-    pms: "200C",
     image: "/a4-tees/a4-scarlet.jpg",
   },
   {
     name: "Cardinal",
     hex: "#C41E3A",
-    pms: "7421C",
     image: "/a4-tees/a4-cardinal.jpg",
   },
   {
     name: "Maroon",
     hex: "#500000",
-    pms: "504C",
     image: "/a4-tees/a4-maroon.jpg",
   },
   {
     name: "Fuchsia",
     hex: "#FF00FF",
-    pms: "219C",
     image: "/a4-tees/a4-fuchsia.jpg",
   },
   {
     name: "Purple",
     hex: "#4B0082",
-    pms: "7672C",
     image: "/a4-tees/a4-purple.jpg",
   },
   {
     name: "Athletic Orange",
     hex: "#FF6600",
-    pms: "172C",
     image: "/a4-tees/a4-athletic-orange.jpg",
   },
   {
     name: "Safety Orange",
     hex: "#FF671F",
-    pms: "021C",
     image: "/a4-tees/a4-safety-orange.jpg",
   },
-  { name: "Sand", hex: "#C2B280", pms: "453C", image: "/a4-tees/a4-sand.jpg" },
+  { name: "Sand", hex: "#C2B280", image: "/a4-tees/a4-sand.jpg" },
   {
     name: "Vegas Gold",
     hex: "#C5B358",
-    pms: "4525C",
     image: "/a4-tees/a4-vegas-gold.jpg",
   },
-  { name: "Gold", hex: "#FFD700", pms: "1235C", image: "/a4-tees/a4-gold.jpg" },
+  { name: "Gold", hex: "#FFD700", image: "/a4-tees/a4-gold.jpg" },
   {
     name: "Light Yellow",
     hex: "#FFFFE0",
-    pms: "120C",
     image: "/a4-tees/a4-light-yellow.jpg",
   },
   {
     name: "Safety Yellow",
     hex: "#E1E000",
-    pms: "809C",
     image: "/a4-tees/a4-safety-yellow.jpg",
+  },
+];
+
+const L7_HOODIE_COLOR_SWATCHES = [
+  {
+    name: "Dove Grey",
+    hex: "#CECECE",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Dove-Grey-Front.jpg",
+  },
+  {
+    name: "Smoke",
+    hex: "#44464c",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Smoke-Front.jpg",
+  },
+  {
+    name: "Black",
+    hex: "#000000",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Black-Front.jpg",
+  },
+  {
+    name: "Charcoal Heather",
+    hex: "#6d6767",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Charcoal-Heather-Front.jpg",
+  },
+  {
+    name: "Heather Grey",
+    hex: "#ceced5",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Heather-Grey-Front.jpg",
+  },
+  {
+    name: "Sports Green",
+    hex: "#243c3b",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Sports-Green-Front.jpg",
+  },
+  {
+    name: "Seafoam",
+    hex: "#b6d6c4",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Seafoam-Front.jpg",
+  },
+  {
+    name: "Burgundy",
+    hex: "#632031",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Burgundy-Front.jpg",
+  },
+  {
+    name: "Red",
+    hex: "#f9123c",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Red-Front.jpg",
+  },
+  {
+    name: "Chestnut",
+    hex: "#5f473d",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Chestnut-Front.jpg",
+  },
+  {
+    name: "Sandshell",
+    hex: "#efe2d2",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Sandshell-Front.jpg",
+  },
+  {
+    name: "Navy",
+    hex: "#293041",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Navy-Front.jpg",
+  },
+  {
+    name: "True Royal",
+    hex: "#1c90f7",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-True-Royal-Front.jpg",
+  },
+  {
+    name: "Oatmeal Heather",
+    hex: "#f2f2ed",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-Oatmeal-Heather-Front.jpg",
+  },
+  {
+    name: "White",
+    hex: "#FFFFFF",
+    image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-White-Front.jpg",
   },
 ];
 
@@ -499,7 +561,12 @@ export default function QuickOrder() {
   const selectedA4Color = A4_COLOR_SWATCHES.find(
     (swatch) => swatch.name === selectedColor,
   );
+  const selectedL7Color = L7_HOODIE_COLOR_SWATCHES.find(
+    (swatch) => swatch.name === selectedColor,
+  );
+  const isL7PremiumFullZipHoodie = selectedModel === "LS14003";
   const showOtherModelFields = selectedModel === "OTHER";
+  const showManualColorField = showOtherModelFields;
   const selectedModelName = showOtherModelFields
     ? otherModelName.trim()
     : selectedModelDetails?.name || "";
@@ -510,15 +577,25 @@ export default function QuickOrder() {
     if (model.id === "A4N3142" && selectedA4Color?.image) {
       return selectedA4Color.image;
     }
+    if (model.id === "LS14003" && selectedL7Color?.image) {
+      return selectedL7Color.image;
+    }
     return model.image;
   };
   const showColorPanel = phase === "shirt-model" && Boolean(selectedModel);
   const showA4Colors = selectedModel === "A4N3142";
-  const canContinueToFrontDesign = showA4Colors
+  const showL7Colors = selectedModel === "LS14003";
+  const currentColorSwatches = showA4Colors
+    ? A4_COLOR_SWATCHES
+    : showL7Colors
+      ? L7_HOODIE_COLOR_SWATCHES
+      : [];
+  const disableFullFrontPlacement = isL7PremiumFullZipHoodie;
+  const canContinueToFrontDesign = currentColorSwatches.length
     ? Boolean(selectedColor)
-    : showOtherModelFields &&
-      Boolean(otherModelName.trim()) &&
-      Boolean(otherModelColor.trim());
+    : showOtherModelFields
+      ? Boolean(otherModelName.trim()) && Boolean(otherModelColor.trim())
+      : false;
   const showFullFront = frontPlacement === "full-front";
   const showLeftChest = frontPlacement === "left-chest";
   const frontDesignRequiresArtwork =
@@ -874,21 +951,23 @@ export default function QuickOrder() {
           >
             <div className="quick-order-color-panel-header">
               <h2>
-                {showOtherModelFields
+                {showManualColorField
                   ? "Enter Shirt Details"
                   : "Choose Shirt Color"}
               </h2>
               <p>
                 {showOtherModelFields
                   ? "Tell us which shirt model and color you want quoted."
-                  : selectedModelDetails
-                    ? `Colors available for ${selectedModelDetails.name}.`
-                    : "Select a model to view available colors."}
+                  : isL7PremiumFullZipHoodie
+                    ? "Choose the hoodie color you want quoted."
+                    : selectedModelDetails
+                      ? `Colors available for ${selectedModelDetails.name}.`
+                      : "Select a model to view available colors."}
               </p>
             </div>
-            {showA4Colors ? (
+            {currentColorSwatches.length ? (
               <div className="quick-order-color-grid" role="list">
-                {A4_COLOR_SWATCHES.map((swatch) => (
+                {currentColorSwatches.map((swatch) => (
                   <button
                     type="button"
                     className={`quick-order-color-card ${
@@ -913,34 +992,36 @@ export default function QuickOrder() {
                   </button>
                 ))}
               </div>
-            ) : showOtherModelFields ? (
+            ) : showManualColorField ? (
               <div className="quick-order-color-form">
-                <div
-                  className={`quick-order-control-group ${
-                    shirtModelFieldAlerts.modelName ? "has-alert" : ""
-                  }`}
-                >
-                  <label htmlFor="other-model-name">Model Name</label>
-                  <input
-                    id="other-model-name"
-                    type="text"
-                    value={otherModelName}
-                    placeholder="Example: Bella + Canvas 3001"
-                    onChange={(event) => {
-                      setOtherModelName(event.target.value);
-                      setShirtModelAlert("");
-                      setShirtModelFieldAlerts((current) => ({
-                        ...current,
-                        modelName: "",
-                      }));
-                    }}
-                  />
-                  {shirtModelFieldAlerts.modelName && (
-                    <p className="quick-order-field-alert" role="alert">
-                      {shirtModelFieldAlerts.modelName}
-                    </p>
-                  )}
-                </div>
+                {showOtherModelFields && (
+                  <div
+                    className={`quick-order-control-group ${
+                      shirtModelFieldAlerts.modelName ? "has-alert" : ""
+                    }`}
+                  >
+                    <label htmlFor="other-model-name">Model Name</label>
+                    <input
+                      id="other-model-name"
+                      type="text"
+                      value={otherModelName}
+                      placeholder="Example: Bella + Canvas 3001"
+                      onChange={(event) => {
+                        setOtherModelName(event.target.value);
+                        setShirtModelAlert("");
+                        setShirtModelFieldAlerts((current) => ({
+                          ...current,
+                          modelName: "",
+                        }));
+                      }}
+                    />
+                    {shirtModelFieldAlerts.modelName && (
+                      <p className="quick-order-field-alert" role="alert">
+                        {shirtModelFieldAlerts.modelName}
+                      </p>
+                    )}
+                  </div>
+                )}
 
                 <div
                   className={`quick-order-control-group ${
@@ -952,7 +1033,11 @@ export default function QuickOrder() {
                     id="other-model-color"
                     type="text"
                     value={otherModelColor}
-                    placeholder="Example: Heather Navy"
+                    placeholder={
+                      isL7PremiumFullZipHoodie
+                        ? "Example: Black"
+                        : "Example: Heather Navy"
+                    }
                     onChange={(event) => {
                       setOtherModelColor(event.target.value);
                       setShirtModelAlert("");
@@ -971,10 +1056,7 @@ export default function QuickOrder() {
               </div>
             ) : (
               <div className="quick-order-color-empty">
-                <p>
-                  Select the A4 Cooling Performance Short Sleeve Tee to see
-                  color swatches.
-                </p>
+                <p>Select a shirt model to view available color options.</p>
               </div>
             )}
           </div>
@@ -1011,11 +1093,12 @@ export default function QuickOrder() {
                 setShirtModelAlert("Select a shirt model to continue.");
                 return;
               }
-              if (showOtherModelFields) {
+              if (showManualColorField) {
                 const nextFieldAlerts = {
-                  modelName: otherModelName.trim()
-                    ? ""
-                    : "Enter the shirt model name before continuing.",
+                  modelName:
+                    showOtherModelFields && !otherModelName.trim()
+                      ? "Enter the shirt model name before continuing."
+                      : "",
                   color: otherModelColor.trim()
                     ? ""
                     : "Enter the shirt color before continuing.",
@@ -1032,9 +1115,9 @@ export default function QuickOrder() {
                 setPhase("front-design");
                 return;
               }
-              if (!showA4Colors) {
+              if (!currentColorSwatches.length) {
                 setShirtModelAlert(
-                  "Color selection is currently available for the A4 Cooling Performance Short Sleeve Tee. Select that model to continue.",
+                  "Select a supported shirt model and complete the color step before continuing.",
                 );
                 return;
               }
@@ -1082,12 +1165,17 @@ export default function QuickOrder() {
           <div className="quick-order-front-controls">
             <h2>Front Placement</h2>
             <div className="quick-order-placement-options">
-              <label className="quick-order-option-row">
+              <label
+                className={`quick-order-option-row ${
+                  disableFullFrontPlacement ? "is-disabled" : ""
+                }`}
+              >
                 <input
                   type="radio"
                   name="front-placement"
                   value="full-front"
                   checked={frontPlacement === "full-front"}
+                  disabled={disableFullFrontPlacement}
                   onChange={(event) =>
                     handleFrontPlacementChange(event.target.value)
                   }
@@ -1119,6 +1207,12 @@ export default function QuickOrder() {
                 None
               </label>
             </div>
+            {disableFullFrontPlacement && (
+              <p className="quick-order-tip">
+                Full front placement is not available for the L7 Premium Full
+                Zip Hoodie.
+              </p>
+            )}
 
             <div
               className={`quick-order-control-group ${frontPlacement === "none" ? "is-disabled" : ""} ${
