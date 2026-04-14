@@ -43,7 +43,7 @@ const SHIRT_MODELS = [
     image: "/ls14003/LS14003-M-Premium-Full-Zip-Hoodie-True-Royal-Front.jpg",
     description:
       "A premium full zip hoodie option for badminton teams that need a heavier layer for travel, warmups, and cooler weather.",
-    price: "Custom quote",
+    price: "$21.00",
   },
   {
     id: "OTHER",
